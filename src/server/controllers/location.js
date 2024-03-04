@@ -1,5 +1,5 @@
-import createLocationDb from "../domains/location";
 import prisma from '../utils/prisma.js'
+import createLocationDb from '../domains/location.js'
 
 const createLocation = async(req, res)=>{
     const{
