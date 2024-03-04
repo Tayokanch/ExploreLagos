@@ -1,0 +1,35 @@
+.nav_Container{
+    display: grid;
+    grid-auto-flow: column;
+    background-color: #000000cf;
+    position: fixed;
+    width: 100%;
+    top : 0;
+    z-index: 1;
+    align-items: center;
+}
+
+.logo{
+    color: aliceblue;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: normal;
+
+}
+.navbar{
+    display: grid;
+    grid-auto-flow: column;
+}
+.navbar > li{
+    list-style: none;
+    font-family: "Arvo", serif;
+    font-size: 1.5rem;
+    color: aliceblue;
+    text-align: center;
+}
+.navbar > li:hover{
+   color: rgb(106, 174, 229);
+    font-family: 1.8rem;
+    cursor: pointer;
+}

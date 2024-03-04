@@ -1,0 +1,10 @@
+header {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+   
+}
+

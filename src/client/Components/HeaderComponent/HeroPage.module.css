@@ -1,0 +1,27 @@
+.hero_container{
+    display: grid;
+    place-items: center;
+    padding-top: 150px;
+    
+    }
+
+.hero_content {
+    text-align: center;
+    align-self: end;
+    padding-bottom: 50px;
+  }
+
+  .hero_content * {
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.757); 
+}
+
+
+  .hero_content >h1{
+    font-family: "Rowdies", sans-serif;
+  }
+  .hero_content >p{
+    font-family: "Ojuju", sans-serif;
+    font-size: 1.8rem;
+    max-width: 600px;
+  }
