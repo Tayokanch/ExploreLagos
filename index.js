@@ -11,16 +11,20 @@ function TourPage() {
             .catch(error => console.error('Error fetching data:', error));
     }, []);
 
-    // Define a function to map location names to image file paths
-    const getImagePath = (locationName) => {
+    // Define a function to map location IDs to an array of image file paths
+    const getImagePath = (locationId) => {
         // Define your mapping logic here
         // For example, you could use a switch statement or an object mapping
-        switch (locationName) {
-            case 'Lekki conservation centre':
-                return '/path/to/your/images/lekki_conservation_centre.jpg';
-            // Add cases for other locations as needed
+        switch (locationId) {
+            case 5:
+                return [
+                    '/path/to/your/images/lekki_conservation_centre_1.jpg',
+                    '/path/to/your/images/lekki_conservation_centre_2.jpg',
+                    '/path/to/your/images/lekki_conservation_centre_3.jpg',
+                ];
+            // Add cases for other location IDs as needed
             default:
-                return '/path/to/default/image.jpg'; // Default image path if no match found
+                return ['/path/to/default/image.jpg']; // Default image path if no match found
         }
     };
 
@@ -30,7 +34,8 @@ function TourPage() {
                 <div key={location.id}>
                     <h2>{location.location}</h2>
                     <p>{location.history}</p>
-                    <img src={getImagePath(location.location)} alt={location.location} />
+                    {/* Example of rendering the first image in the array */}
+                    <img src={getImagePath(location.id)[0]} alt={location.location} />
                 </div>
             ))}
         </div>

@@ -20,6 +20,12 @@ model Location {
   location      String    @unique
   history       String
   price         Int
+  category      String
+  activities   Json[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
 }
+
+
+

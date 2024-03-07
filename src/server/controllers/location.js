@@ -4,7 +4,9 @@ import createLocationDb from '../domains/location.js'
 const createLocation = async(req, res)=>{
     const{
         location,
+        category,
         history,
+        activities,
         price
     }= req.body
 
@@ -14,12 +16,18 @@ const createLocation = async(req, res)=>{
     }
 
     try{
-        const createNewLocation = await createLocationDb(location, history, price)
-        return res.status(201).json({ post: createNewLocation })
+        const createNewLocation = await createLocationDb(location,category, history,activities, price)
+        return res.status(201).json({ location: createNewLocation })
 
     }catch(e){
         res.status(500).json({error: e.message})
+        console.log(e.message)
     }
+}
+
+
+const getLocations = ()=>{
+    
 }
 
 export default createLocation;
