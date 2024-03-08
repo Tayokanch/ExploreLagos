@@ -36,9 +36,9 @@ function Locations() {
         ];
       case 15:
         return [
+          "assets/art/oshodi/25c2276e5b7283e54cac4c4f69090a5b.jpg",
           "assets/art/oshodi/2a15214fe7f4c9baa8a705149e32243f.jpg",
           "assets/art/oshodi/2e7d1649d0f17f8a4640b915222bacc4.jpg",
-          "assets/art/oshodi/25c2276e5b7283e54cac4c4f69090a5b.jpg",
           "assets/art/oshodi/49f1f6b4a0ca342f9f47513636c06585.jpg",
           "assets/art/oshodi/70e4d26c830dbc348e22629b711b8d0f.jpg",
           "assets/art/oshodi/76b67e071fa571a7071615f7b0c730e1.jpg",
@@ -65,17 +65,17 @@ function Locations() {
           "assets/beaches/hovbeach/da265b29c205915526dd5f3edf1d5e86.jpg",
         ];
 
-      case 18:
+      case 19:
         return [
           "assets/beaches/tarkwabay/3b6b1b926ddb09de076316e4ed018749.jpg",
           "assets/beaches/tarkwabay/cf8bc4a8c48e4980babef14cebd27d12.jpg",
           "assets/beaches/tarkwabay/e2e39e6eb64d20a691f4029b13adb0ec.jpg",
         ];
-      case 19:
+      case 18:
         return [
           "assets/beaches/landmark/21bd539104a99aa6eb9fe9be246f4630.jpg",
+          "assets/beaches/landmark/21bd539104a99aa6eb9fe9be246f4630.jpg",
           "assets/beaches/landmark/96fc7022bada718389dce730ae44e339.jpg",
-          "assets/beaches/landmark/8b65dd8554046eccb4eb31326598c35c.jpg",
           "assets/beaches/landmark/2a19a6bd9322d2ab75b85ea287b6bfce.jpg",
           "assets/beaches/landmark/737b5d74bcdbbee3baa58c493a1aaeb2.jpg",
           "assets/beaches/landmark/d208282f3ee57d53af4b6404d3babdb1.jpg",
@@ -101,19 +101,23 @@ function Locations() {
       />
     ));
   };
+  let firstUrl;
 
   return (
-    <figure>
+    <section className={LocationsCss.image_container}>
       {locations?.map((location) => (
-        <div key={location.id}>
-          <h2>{location.name}</h2>
+        <figure key={location.id}>
+          <figcaption>{location.name}</figcaption>
           <p>{location.about}</p>
-          {getImagePath(location.id).map((imageUrl, index) => (
-            <img src={imageUrl} key={index}></img>
-          ))}
-        </div>
+          {getImagePath(location.id)[0] && (
+            <img
+              src={getImagePath(location?.id)[0]}
+              alt={`Location ${location?.id} Image 0`}
+            />
+          )}
+        </figure>
       ))}
-    </figure>
+    </section>
   );
 }
 

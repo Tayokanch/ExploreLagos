@@ -1,0 +1,23 @@
+.image_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    place-items: center;
+    gap: 20px;
+}
+
+
+.image_container > figure{
+    width: 100%;
+    display: grid;
+    grid-template-rows: 70px 200px 1fr;
+    background-color: aliceblue;
+    padding: 20px;
+  
+}
+
+.image_container > figure > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
