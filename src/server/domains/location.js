@@ -1,7 +1,7 @@
 import prisma from '../utils/prisma.js'
-const createLocationDb = async(location,category, about, highlights, price)=> await prisma.location.create({
+const createLocationDb = async(name,category, about, highlights, price)=> await prisma.location.create({
     data:{
-        location,
+        name,
         category,
         about,
         highlights,

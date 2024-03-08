@@ -3,7 +3,7 @@ import createLocationDb from '../domains/location.js'
 
 const createLocation = async(req, res)=>{
     const{
-        location,
+        name,
         category,
         about,
         highlights,
@@ -11,12 +11,12 @@ const createLocation = async(req, res)=>{
     }= req.body
 
 
-    if(!location || !about || !price){
+    if(!name || !about || !price){
         res.status(400).json({ error: 'Missing field in the request body'})
     }
 
     try{
-        const createNewLocation = await createLocationDb(location,category, about,highlights, price)
+        const createNewLocation = await createLocationDb(name,category, about,highlights, price)
         return res.status(201).json({ location: createNewLocation })
 
     }catch(e){
@@ -29,7 +29,7 @@ const createLocation = async(req, res)=>{
 const getLocations = async(req, res)=>{
     try{
         const getallLocations = await prisma.location.findMany()
-        const location = getallLocations[0]
+        const location = getallLocations
         return res.status(200).json(location)
 
     }catch(e){

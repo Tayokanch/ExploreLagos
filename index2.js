@@ -124,13 +124,14 @@ const HovBeachLagos = {
             "topic": "Entertainment and Events",
             "description": "Immerse yourself in the vibrant entertainment scene at Hov Beach, where live music performances, cultural festivals, and themed events captivate audiences throughout the year. Experience the rhythm of Lagos and create unforgettable memories with friends and family."
         }
-    ]
+    ],
+    "price": 35
 }
 
 const LandmarkBeach = {
     "name": "Landmark Beach",
     "category": "Resort",
-    "description": "Landmark Beach, situated in the upscale Victoria Island neighborhood of Lagos, offers a luxurious and tranquil escape from the city's hustle and bustle. With its pristine shoreline, upscale amenities, and picturesque surroundings, Landmark Beach is a premier destination for relaxation, recreation, and socializing.",
+    "about": "Landmark Beach, situated in the upscale Victoria Island neighborhood of Lagos, offers a luxurious and tranquil escape from the city's hustle and bustle. With its pristine shoreline, upscale amenities, and picturesque surroundings, Landmark Beach is a premier destination for relaxation, recreation, and socializing.",
     "highlights": [
         {
             "topic": "Scenic Beauty",
@@ -159,7 +160,7 @@ const LandmarkBeach = {
 const TakwaBayBeach = {
     "name": "Takwa Bay Beach",
     "category": "resort",
-    "description": "Takwa Bay Beach, located on the coastline of Lagos, Nigeria, is a popular destination known for its pristine sandy shores, clear turquoise waters, and serene atmosphere. Surrounded by picturesque cliffs and lush greenery, Takwa Bay offers visitors an idyllic retreat from the bustling city life of Lagos. Whether you're seeking relaxation, water sports, or simply enjoying the breathtaking views, Takwa Bay Beach has something to offer for everyone.",
+    "about": "Takwa Bay Beach, located on the coastline of Lagos, Nigeria, is a popular destination known for its pristine sandy shores, clear turquoise waters, and serene atmosphere. Surrounded by picturesque cliffs and lush greenery, Takwa Bay offers visitors an idyllic retreat from the bustling city life of Lagos. Whether you're seeking relaxation, water sports, or simply enjoying the breathtaking views, Takwa Bay Beach has something to offer for everyone.",
     "highlights": [
         {
             "topic": "Natural Beauty",
@@ -189,7 +190,7 @@ const TakwaBayBeach = {
 const LaCampagneResort = {
     "name": "La Campagne Tropicana Beach Resort",
     "category": "Resort",
-    "description": "La Campagne Tropicana Beach Resort is a luxurious beachfront resort nestled along the picturesque coastline of Lekki, Lagos State. Set amidst lush tropical gardens and overlooking the sparkling waters of the Atlantic Ocean, this idyllic retreat offers guests a perfect blend of natural beauty, serene ambiance, and world-class hospitality. Whether you're seeking relaxation, adventure, or cultural immersion, La Campagne Tropicana Beach Resort promises an unforgettable experience.",
+    "about": "La Campagne Tropicana Beach Resort is a luxurious beachfront resort nestled along the picturesque coastline of Lekki, Lagos State. Set amidst lush tropical gardens and overlooking the sparkling waters of the Atlantic Ocean, this idyllic retreat offers guests a perfect blend of natural beauty, serene ambiance, and world-class hospitality. Whether you're seeking relaxation, adventure, or cultural immersion, La Campagne Tropicana Beach Resort promises an unforgettable experience.",
     "highlights": [
         {
             "topic": "Luxurious Accommodation",
