@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import TourCategoriesCss from "./TourCategories.jsx";
+import   "./TourCategories.css";
 import getImagePath from "./imagePath.js";
 
 function TourCategories({ setLocations, locations }) {
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState('All');
   const [originalLocations, setOriginalLocations] = useState([]);
 
   useEffect(() => {
@@ -33,15 +33,33 @@ function TourCategories({ setLocations, locations }) {
   };
 
   return (
-    <section>
+    <section className='category_container'>
       <h3>Tour Categories</h3>
       <ul>
-        <li onClick={() => handleCategoryClick("All")}>All</li>
-        <li onClick={() => handleCategoryClick("Recreational Centre")}>
+        <li
+          onClick={() => handleCategoryClick("All")}
+          className={category === "All" ? "selected" : ""}
+        >
+          All
+        </li>
+        <li
+          onClick={() => handleCategoryClick("Recreational Centre")}
+          className={category === "Recreational Centre" ? "selected" : ""}
+        >
           Recreational Centre
         </li>
-        <li onClick={() => handleCategoryClick("Art")}>Art Galleries</li>
-        <li onClick={() => handleCategoryClick("Resort")}>Beaches</li>
+        <li
+          onClick={() => handleCategoryClick("Art")}
+          className={category === "Art" ? "selected" : ""}
+        >
+          Art Galleries
+        </li>
+        <li
+          onClick={() => handleCategoryClick("Resort")}
+          className={category === "Resort" ? "selected" : ""}
+        >
+          Beaches
+        </li>
       </ul>
     </section>
   );

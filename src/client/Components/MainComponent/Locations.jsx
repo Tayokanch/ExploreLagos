@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 import LocationsCss from "../MainComponent/Locations.module.css";
 import getImagePath from "./imagePath.js";
 
-
-function Locations({setLocations, locations}) {
+function Locations({ setLocations, locations }) {
   useEffect(() => {
     fetchLocation();
-
   }, []);
-  
+
   const fetchLocation = async () => {
     const url = "http://localhost:3030/location";
     const response = await fetch(url);
@@ -38,7 +36,11 @@ function Locations({setLocations, locations}) {
         {locations?.map((location) => (
           <figure key={location.id}>
             <figcaption>{location.name}</figcaption>
-            <p>{location.about}</p>
+            <p>
+              {location.about.substring(0, 200).concat("...")}
+              <span>read more</span>
+            </p>
+
             {getImagePath(location.id)[0] && (
               <img
                 src={getImagePath(location?.id)[0]}

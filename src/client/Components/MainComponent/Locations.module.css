@@ -1,6 +1,7 @@
 .image_container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-rows:  auto;
     gap: 20px;
 }
 
@@ -8,13 +9,34 @@
 .image_container > figure{
     width: 100%;
     display: grid;
-    grid-template-rows: 70px 200px 1fr;
+    grid-template-rows: 40px 100px 1fr;
     background-color: aliceblue;
     padding: 20px;
   
 }
+.image_container > figure figcaption{
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    font-style: normal;
+}
 .image_container > figure> p{
     overflow: scroll;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    text-align: justify;
+ 
+  
+}
+
+.image_container > figure> p> span{
+    color: brown;
+    text-decoration: underline;
+
+}
+.image_container > figure> p> span, :hover{
+    cursor: pointer;
+
 }
 
 .image_container > figure > img{
