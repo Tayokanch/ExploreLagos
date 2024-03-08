@@ -1,7 +1,6 @@
 .image_container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    place-items: center;
     gap: 20px;
 }
 
@@ -14,10 +13,12 @@
     padding: 20px;
   
 }
+.image_container > figure> p{
+    overflow: scroll;
+}
 
 .image_container > figure > img{
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    padding-top: 10px;
 }
 
