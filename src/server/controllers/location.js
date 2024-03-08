@@ -5,18 +5,18 @@ const createLocation = async(req, res)=>{
     const{
         location,
         category,
-        history,
-        activities,
+        about,
+        highlights,
         price
     }= req.body
 
 
-    if(!location || !history || !price){
+    if(!location || !about || !price){
         res.status(400).json({ error: 'Missing field in the request body'})
     }
 
     try{
-        const createNewLocation = await createLocationDb(location,category, history,activities, price)
+        const createNewLocation = await createLocationDb(location,category, about,highlights, price)
         return res.status(201).json({ location: createNewLocation })
 
     }catch(e){
@@ -26,8 +26,16 @@ const createLocation = async(req, res)=>{
 }
 
 
-const getLocations = ()=>{
-    
+const getLocations = async(req, res)=>{
+    try{
+        const getallLocations = await prisma.location.findMany()
+        const location = getallLocations[0]
+        return res.status(200).json(location)
+
+    }catch(e){
+        console.error("Error fetching users:", e);
+        return res.status(500).json({ e: 'Internal Server Error' });    }
+
 }
 
-export default createLocation;
+export  {createLocation, getLocations};

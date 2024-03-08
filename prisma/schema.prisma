@@ -18,10 +18,10 @@ datasource db {
 model Location {
   id            Int       @id @default(autoincrement())
   location      String    @unique
-  history       String
+  about         String
   price         Int
   category      String
-  activities   Json[]
+  highlights    Json
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
