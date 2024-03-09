@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import { Route, Routes } from "react-router-dom";
 import Main from "./Components/MainComponent/Main";
 import Header from "./Components/HeaderComponent/Header";
-import Register from "./Components/Register";
+import Register from "./Components/Register&Login/Register.jsx";
 import Body from "./Components/Body/Body";
 import "./App.css";
 
@@ -13,7 +13,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Body />}></Route>
-        <Route path="/Register" element={<Register />}></Route>
+        <Route path="/LoginOrSignUp/*" element={<Register />}></Route>
       </Routes>
     </>
   );

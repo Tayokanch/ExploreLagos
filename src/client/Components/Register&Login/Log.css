@@ -1,0 +1,47 @@
+
+.form{
+    width: 100%;
+    display: grid;
+    padding: 0 50px;
+}
+.form >.heading, .forget_password{
+    font-family: "Hind", sans-serif;
+    color: aliceblue;
+    padding-top: 10px;
+}
+
+.form > h3{
+    font-family: "Archivo Black", sans-serif;
+    color:black;
+    padding-bottom: 10px;
+}
+.form label{
+    font-family: "Hind", sans-serif;
+    color:  rgba(12, 12, 42, 0.743);;
+    display: block;
+}
+
+.form input{
+    width: 100%;
+    outline: none;
+    padding: 3px;
+}
+
+.form > div:last-of-type{
+    display: grid;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+.form button{
+    padding: 5px 40px;
+    text-align: center;
+    background-color: rgba(15, 131, 208, 0.743);
+    color: #fff;
+    border: none;
+    font-size: 1.4rem;
+}
+
+.form button:hover{
+    color: rgba(15, 131, 208, 0.743);
+    background-color: #fff
+}

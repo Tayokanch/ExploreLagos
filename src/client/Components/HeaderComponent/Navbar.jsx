@@ -16,7 +16,7 @@ function Navbar() {
       <div className={NavCSS.navbar}>
         <li>History</li>
         <li>Contact</li>
-        <li onClick={() => handleNavigation("/Register")}>Sign up/in</li>
+        <li onClick={() => handleNavigation("/LoginOrSignUp")}>Sign up/in</li>
         <li>EN</li>
       </div>
     </div>
