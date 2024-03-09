@@ -2,12 +2,17 @@ import React from "react";
 import { useState, useEffect } from "react";
 import LocationsCss from "../MainComponent/Locations.module.css";
 import getImagePath from "./imagePath.js";
+import { useNavigate } from "react-router-dom";
 
 function Locations({ setLocations, locations }) {
   useEffect(() => {
     fetchLocation();
   }, []);
 
+  const navigate = useNavigate();
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
   const fetchLocation = async () => {
     const url = "http://localhost:3030/location";
     const response = await fetch(url);
@@ -38,7 +43,9 @@ function Locations({ setLocations, locations }) {
             <figcaption>{location.name}</figcaption>
             <p>
               {location.about.substring(0, 200).concat("...")}
-              <span>read more</span>
+              <span onClick={() => handleNavigation("/Register")}>
+                read more
+              </span>
             </p>
 
             {getImagePath(location.id)[0] && (
