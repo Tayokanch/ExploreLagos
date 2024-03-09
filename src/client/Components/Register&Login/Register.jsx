@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../HeaderComponent/Navbar";
 import bg1 from "../../../../assets/background/lagosnight.jpeg";
 import RegisterCss from "./Register.module.css";
@@ -7,6 +7,12 @@ import RegisterComponent from "../Register&Login/Reg.jsx";
 import LogComponent from "../Register&Login/Log.jsx";
 
 function Register() {
+  const [showLogin, setShowLogin] = useState(true);
+
+  const toggleLogin = () => {
+    setShowLogin(!showLogin);
+  };
+
   return (
     <section
       className={RegisterCss.container}
@@ -17,16 +23,10 @@ function Register() {
         <div>"Enjoy LasGidi to the fullest"</div>
         <div>
           <ul>
-            <li>Login</li>
-            <li>Register</li>
+            <li onClick={toggleLogin}>Login</li>
+            <li onClick={toggleLogin}>Register</li>
           </ul>
-          <LogComponent />
-
-
-          {/*           <Routes>
-            <Route path="/Login" element={<LogComponent />}></Route>
-            <Route path="/Register" element={<RegisterComponent />}></Route>
-          </Routes> */}
+          {showLogin ? <LogComponent /> : <RegisterComponent />}
         </div>
       </div>
     </section>

@@ -14,8 +14,12 @@ function Reg() {
         <input type="text" name="lastname" required />
       </div>
       <div>
-        <label>Email</label>ç
+        <label>Email</label>
         <input type="email" name="lastname" required />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" name="password" required />
       </div>
       <div>
         <button>Register</button>
