@@ -7,6 +7,12 @@ import staff3 from "../../../../assets/team/staff3.jpeg";
 import staff4 from "../../../../assets/team/staff2.jpeg";
 import staff5 from "../../../../assets/team/staff4.jpeg";
 import staff6 from "../../../../assets/team/staff6.jpeg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 function Team() {
   const navigate = useNavigate();
@@ -32,10 +38,13 @@ function Team() {
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Doloremque officia nemo atque temporibus iste, veniam rem vitae
-              ipsum eos sequi ad sit asperiores. Eligendi corrupti, obcaecati
-              praesentium dolorem odit quasi!
             </p>
-            <div className="social_media"> This is social media</div>
+            <div className="social_media">
+              {" "}
+              <FontAwesomeIcon icon={faInstagram} />
+              <FontAwesomeIcon icon={faLinkedin} />
+              <FontAwesomeIcon icon={faTwitter} />
+            </div>
           </figure>
 
           <figure>
@@ -44,8 +53,6 @@ function Team() {
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Doloremque officia nemo atque temporibus iste, veniam rem vitae
-              ipsum eos sequi ad sit asperiores. Eligendi corrupti, obcaecati
-              praesentium dolorem odit quasi!
             </p>
             <div className="social_media">This is social media</div>
           </figure>

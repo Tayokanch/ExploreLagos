@@ -41,8 +41,21 @@
  
 
 }
+.teams > figure  figcaption{
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgb(20, 135, 135);
 
+
+}
+
+.teams > figure  p{
+    font-family: "DM Sans", sans-serif;
+    padding-bottom: 10px;
+}
 .teams > figure > img{
+
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -53,6 +66,20 @@
     width: 100%;
 }
 
+.social_media > *{
+    color: rgb(20, 135, 135);
+    font-size: 2.5rem;
+    padding-left: 8px;
+
+
+}
+
+.social_media > *:hover{
+    color: rgba(23, 124, 124, 0.468);
+
+
+
+}
 .team_footer{
     background-color: rgb(2, 2, 29);
     background-color: rgb(7, 35, 59);
