@@ -23,8 +23,18 @@ function Register() {
         <div>"Enjoy LasGidi to the fullest"</div>
         <div>
           <ul>
-            <li onClick={toggleLogin}>Login</li>
-            <li onClick={toggleLogin}>Register</li>
+            <li
+              onClick={toggleLogin}
+              className={`${showLogin ? RegisterCss.active : ""}`}
+            >
+              Login
+            </li>
+            <li
+              onClick={toggleLogin}
+              className={`${!showLogin ?  RegisterCss.active : ""}`}
+            >
+              Register
+            </li>
           </ul>
           {showLogin ? <LogComponent /> : <RegisterComponent />}
         </div>

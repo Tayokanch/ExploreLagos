@@ -43,7 +43,7 @@ function Locations({ setLocations, locations }) {
             <figcaption>{location.name}</figcaption>
             <p>
               {location.about.substring(0, 200).concat("...")}
-              <span onClick={() => handleNavigation("/Register")}>
+              <span onClick={() => handleNavigation("/LoginOrSignUp/*")}>
                 read more
               </span>
             </p>

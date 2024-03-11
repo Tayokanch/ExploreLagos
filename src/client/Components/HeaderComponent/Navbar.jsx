@@ -17,7 +17,7 @@ function Navbar() {
         <li>History</li>
         <li>Contact</li>
         <li onClick={() => handleNavigation("/LoginOrSignUp")}>Sign up/in</li>
-        <li>EN</li>
+        <li onClick={() => handleNavigation("/Staff")}>Staff</li>
       </div>
     </div>
   );

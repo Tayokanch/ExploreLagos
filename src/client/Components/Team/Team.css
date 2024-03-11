@@ -1,0 +1,63 @@
+.team_container{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(161, 201, 236);
+    overflow: auto;
+ 
+}
+
+.staff_header{
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.team_box{
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 10px;
+    margin: 0 auto;
+}   
+
+.our_team{
+    background-color: rgb(20, 135, 135);
+}
+
+.teams{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+   
+}
+
+.teams > figure{
+    width: 100%;
+    display: grid;
+    grid-auto-rows: 300px 10px 100px auto;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+ 
+
+}
+
+.teams > figure > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding-top: 5px;
+
+}
+.teams > figure > p{
+    width: 100%;
+}
+
+.team_footer{
+    background-color: rgb(2, 2, 29);
+    background-color: rgb(7, 35, 59);
+    color:#fff;
+    padding: 20px;
+    position: sticky;
+    bottom: 0;
+}

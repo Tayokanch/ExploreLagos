@@ -6,6 +6,7 @@ import Main from "./Components/MainComponent/Main";
 import Header from "./Components/HeaderComponent/Header";
 import Register from "./Components/Register&Login/Register.jsx";
 import Body from "./Components/Body/Body";
+import Staff from "./Components/Team/Team.jsx";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Body />}></Route>
         <Route path="/LoginOrSignUp/*" element={<Register />}></Route>
+        <Route path="/Staff/*" element={<Staff />}></Route>
       </Routes>
     </>
   );
