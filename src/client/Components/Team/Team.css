@@ -9,6 +9,27 @@
 .staff_header{
     background-color: #fff;
     margin-bottom: 10px;
+    text-align: right;
+    padding: 10px;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+
+}
+
+.staff_header > p{
+    font-family: "Arvo", serif;
+    font-size: 1.5rem;
+    display: inline-block;
+    text-decoration: underline;
+    font-weight: bold;
+    color: rgb(20, 135, 135);
+
+}
+
+.staff_header > p:hover{
+    color: rgb(96, 210, 210);
+
 }
 .team_box{
     width: 100%;

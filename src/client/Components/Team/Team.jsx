@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "./Team.css";
 import staff1 from "../../../../assets/team/staff1.jpeg";
 import staff2 from "../../../../assets/team/staff5.jpeg";
@@ -8,6 +7,8 @@ import staff4 from "../../../../assets/team/staff2.jpeg";
 import staff5 from "../../../../assets/team/staff4.jpeg";
 import staff6 from "../../../../assets/team/staff6.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "../HeaderComponent/Logo";
+import TeamHeader from "./TeamHeader";
 import {
   faInstagram,
   faLinkedin,
@@ -15,17 +16,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 function Team() {
-  const navigate = useNavigate();
-  const navigateStaff = (path) => {
-    navigate();
-  };
   return (
     <section className="team_container">
-      <div className="staff_header">
-        <p>Meet our staffs</p>
-        <p>Log in </p>
-        <p> News</p>
-      </div>
+      <TeamHeader />
       <div className="team_box">
         <div className="our_team">
           Our Team, Lorem, ipsum dolor sit amet consectetur adipisicing elit.
