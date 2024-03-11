@@ -26,9 +26,11 @@ model Location {
 }
 
 model Tourist {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   firstname String
   lastname  String
-  email     String @unique
+  email     String   @unique
   password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -9,15 +9,18 @@ const createLocationDb = async(name,category, about, highlights, price)=> await 
       }
   })
 
-  const createTouristDb = async(firstname, lastname, email, password)=> await prisma.tourist.create({
+  const createTouristDb = async(firstname, lastname, email, hashedPassword)=> await prisma.tourist.create({
     data:{
       firstname,
       lastname,
       email,
-      password
+      password: hashedPassword
 
     }
   })
 
   
   export  { createLocationDb, createTouristDb}
+
+
+  

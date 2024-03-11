@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/location', LocationRouter);
 app.use('/activity', activityRouter);
-app.use('/tourists', touristRouter)
+app.use('/tourist', touristRouter)
 
 
 export { app };

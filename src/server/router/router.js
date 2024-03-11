@@ -3,12 +3,12 @@ const router = express.Router();
 
 import {createLocation} from '../controllers/location.js'
 import { getLocations } from '../controllers/location.js';
-import createTourist from '../controllers/Tourist.js';
+import {createTourist} from '../controllers/Tourist.js';
 
 
 router.post('/', createLocation);
 router.get('/', getLocations )
-router.post('/', createTourist)
+router.post('/register', createTourist)
 
 
 export default router;
