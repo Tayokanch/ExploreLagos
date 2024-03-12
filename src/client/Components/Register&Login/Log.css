@@ -45,3 +45,12 @@
     color: rgba(15, 131, 208, 0.743);
     background-color: #fff
 }
+
+.login_response{
+    color: #5d0d0d;
+    color:rgba(12, 12, 42, 0.743);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 3px;
+}

@@ -1,27 +1,101 @@
-import React from 'react'
-import  './Log.css'
+import React, { useContext, useEffect, useState } from "react";
+import "./Log.css";
+import { formContext } from "../../App";
+import { initialForm } from "../../App";
+import { jwtDecode } from "jwt-decode";
+const url = "http://localhost:3030";
+
 function Log() {
+  const { formInputs, setFormInputs, userName, setUserName } =
+    useContext(formContext);
+  const [loginResponse, setLoginResponse] = useState("");
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(formInputs),
+  };
+
+  const touristLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const verifyLogin = await fetch(`${url}/tourist/login`, options);
+      if (!verifyLogin.ok) {
+        setLoginResponse("Invalid email or password");
+        throw new Error("Failed to login");
+      }
+      setLoginResponse("");
+      const loginToken = await verifyLogin.json();
+      if (loginToken) {
+        const decodeToken = jwtDecode(loginToken.data);
+       
+        setUserName(decodeToken);
+        
+        console.log('here is the decoded token',decodeToken)
+
+        localStorage.setItem("token", JSON.stringify(loginToken.data));
+      }
+
+      
+
+    } catch (err) {
+      console.error(err);
+    }
+
+    setFormInputs(initialForm);
+  };
+
+  useEffect(() => {
+    console.log("This is login response", loginResponse);
+  }, [loginResponse]);
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+
+    setFormInputs({
+      ...formInputs,
+      [name]: value,
+    });
+  };
+
   return (
-    <form className='form'>
-        <p className='heading'>Welcome to Explore Lagos</p>
-        <h3>Login with</h3>
-        <div>
-            <label>Email</label>
-            <input type="email" name="email" id="" required/>
-        </div>
-        <div>
-            <label>Password</label>
-            <input type="password" name="password"  required/>
-        </div>
-        <div>
-            <p className='forget_password'>Forget Password?</p>
-        </div>
-        <div>
-            <button>Login</button>
-        </div>
-     
+    <form className="form" onSubmit={touristLogin}>
+      <p className="heading">Welcome to Explore Lagos</p>
+      <h3>Login with</h3>
+      <div>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={formInputs.email}
+          required
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          value={formInputs.password}
+          required
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <p className="forget_password">Forget Password?</p>
+      </div>
+      <div>
+        <button type="submit">Login</button>
+      </div>
+      {loginResponse !== "" && (
+        <p className="login_response">{loginResponse}</p>
+      )}
     </form>
-  )
+  );
 }
 
-export default Log
+export default Log;
