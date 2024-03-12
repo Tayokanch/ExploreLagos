@@ -35,11 +35,17 @@ function Locations({ setLocations, locations }) {
     ));
   };
 
+  const handleLocation = (locationSelected) => {
+    navigate(`location/${locationSelected.name}`, {
+      state: { result: locationSelected },
+    });
+  };
+
   return (
     <>
       <section className={LocationsCss.image_container}>
         {locations?.map((location) => (
-          <figure key={location.id}>
+          <figure key={location.id} onClick={() => handleLocation(location)}>
             <figcaption>{location.name}</figcaption>
             <p>
               {location.about.substring(0, 200).concat("...")}

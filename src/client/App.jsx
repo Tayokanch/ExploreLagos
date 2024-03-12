@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "../../assets/react.svg";
 import viteLogo from "/vite.svg";
 import { Route, Routes } from "react-router-dom";
@@ -8,6 +8,7 @@ import Register from "./Components/Register&Login/Register.jsx";
 import Body from "./Components/Body/Body";
 import Staff from "./Components/Team/Team.jsx";
 import TeamLogin from "./Components/Team/TeamLogin.jsx";
+import EachLocation from "./Components/MainComponent/EachLocation.jsx";
 import { createContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import "./App.css";
@@ -46,6 +47,7 @@ function App() {
         <Route path="/LoginOrSignUp/*" element={<Register />}></Route>
         <Route path="/Team/*" element={<Staff />}></Route>
         <Route path="/TeamLogin/*" element={<TeamLogin />}></Route>
+        <Route path="/location/:name" element={<EachLocation />} />
       </Routes>
     </formContext.Provider>
   );
