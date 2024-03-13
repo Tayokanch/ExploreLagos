@@ -54,7 +54,6 @@ const getImagePath = (locationId) => {
       case 18:
         return [
           "assets/beaches/landmark/21bd539104a99aa6eb9fe9be246f4630.jpg",
-          "assets/beaches/landmark/21bd539104a99aa6eb9fe9be246f4630.jpg",
           "assets/beaches/landmark/96fc7022bada718389dce730ae44e339.jpg",
           "assets/beaches/landmark/2a19a6bd9322d2ab75b85ea287b6bfce.jpg",
           "assets/beaches/landmark/737b5d74bcdbbee3baa58c493a1aaeb2.jpg",

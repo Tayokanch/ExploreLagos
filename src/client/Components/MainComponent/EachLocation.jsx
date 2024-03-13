@@ -37,34 +37,37 @@ function EachLocation() {
     selectedLocation && (
       <section className="slider_container">
         <div>
-          <div>
-            <img src={`../${sliderData}`} height="300" width={500} />
-          </div>
-          <div>
-            <h3>{selectedLocation?.name}</h3>
-            <p>{selectedLocation?.about}</p>
-            <p>
+          <h1>{`Welcome to ${selectedLocation?.name}`}</h1>
+          <div className="slider_header">
+            <div>
+              <img src={`../${sliderData}`} />
+            </div>
+            <div>
+              <p>{selectedLocation?.about}</p>
+              <h2>Activies</h2>
               {selectedLocation?.highlights.map((highlight, index) => (
                 <li key={index}>{highlight.topic}</li>
               ))}
-            </p>
+            </div>
           </div>
         </div>
         <div className="image_slider">
           {imageUrls.map((image, index) => (
-            <div className="thumbnail" key={index}>
+            <div
+              className={`thumbnail ${
+                sliderData === `../${image}` ? "clicked" : ""
+              }`}
+              key={index}
+            >
               <img
                 src={`../${image}`}
                 alt={`${selectedLocation.name} Image: ${index}`}
                 height="400px"
-                width="400px"
                 onClick={() => handleClick(index)}
-                className={sliderData === `../${image}` ? "clicked" : ""}
               />
             </div>
           ))}
         </div>
-        <p>{selectedLocation.name}</p>
       </section>
     )
   );
