@@ -3,32 +3,28 @@ import "./Booking.css";
 import { formContext } from "../../App";
 
 function Book() {
-  const [price, setPrice] = useState(10);
+  const [price, setPrice] = useState(0);
+  const [bookingFor, setBookingFor] = useState("");
+
   const { locations, loggedInUser, setLoggedInUser } = useContext(formContext);
 
-const userJSON = localStorage.getItem("decoded");
-const user = JSON.parse(userJSON);
-const userId = user.userId;
-
-console.log("Decoded userId:", userId);
-
+  const userJSON = localStorage.getItem("decoded");
+  const user = JSON.parse(userJSON);
+  const userId = user.userId;
 
   const [booking, setBooking] = useState({
     printName: "",
     locationId: "",
-    userId: userId
+    userId: userId,
+    bookingfor: "",
   });
-
-  useEffect(() => {
-    console.log("this is", locations);
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setBooking({
       printName: "",
       locationId: "",
-      userId: "", // Reset userId when form is submitted
+      userId: userId,
     });
     console.log(booking);
   };
@@ -46,6 +42,14 @@ console.log("Decoded userId:", userId);
     setBooking({
       ...booking,
       locationId: value,
+      bookingfor: "",
+    });
+  };
+
+  const handleBookingForChange = (bookingType) => {
+    setBooking({
+      ...booking,
+      bookingfor: bookingType,
     });
   };
 
@@ -66,9 +70,14 @@ console.log("Decoded userId:", userId);
         </div>
 
         <div>
-          <p className="clicked">Adult</p>
-          <p>Teenager</p>
-          <p>Children</p>
+          <p
+            className="clicked"
+            onClick={() => handleBookingForChange("Adult")}
+          >
+            Adult
+          </p>
+          <p onClick={() => handleBookingForChange("Teenager")}>Teenager</p>
+          <p onClick={() => handleBookingForChange("Children")}>Children</p>
         </div>
         <div>
           <input

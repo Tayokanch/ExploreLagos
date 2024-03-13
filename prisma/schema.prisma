@@ -41,5 +41,6 @@ model Bookings {
   userId     Int
   locationId Int
   printName  String
+  bookingfor String
   tourist    User?  @relation(fields: [userId], references: [id])
 }

@@ -24,7 +24,7 @@ const createLocationDb = async(name,category, about, highlights, price)=> await 
       userId,
       printName,
       locationId,
-      bookingfor: type
+      bookingfor: bookingfor
     }
   })
   
