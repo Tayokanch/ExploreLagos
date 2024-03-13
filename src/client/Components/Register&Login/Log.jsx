@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 const url = "http://localhost:3030";
 
 function Log() {
-  const { formInputs, setFormInputs, userName, setUserName } =
+  const { formInputs, setFormInputs, loggedInUser, setLoggedInUser } =
     useContext(formContext);
   const [loginResponse, setLoginResponse] = useState("");
   const options = {
@@ -31,22 +31,25 @@ function Log() {
       const loginToken = await verifyLogin.json();
       if (loginToken) {
         const decodeToken = jwtDecode(loginToken.data);
-       
-        setUserName(decodeToken);
-        
-        console.log('here is the decoded token',decodeToken)
+
+        setLoggedInUser(decodeToken);
+
+        localStorage.setItem("decoded", JSON.stringify(decodeToken));
+
+        console.log("here is the decoded token", decodeToken);
 
         localStorage.setItem("token", JSON.stringify(loginToken.data));
       }
-
-      
-
     } catch (err) {
       console.error(err);
     }
 
     setFormInputs(initialForm);
   };
+
+  useEffect(() => {
+    console.log("This is loggedin User", loggedInUser);
+  }, [loggedInUser]);
 
   useEffect(() => {
     console.log("This is login response", loginResponse);

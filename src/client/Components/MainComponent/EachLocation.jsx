@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./EachLocation.css";
 import getImagePath from "./imagePath";
+import Book from "../Booking/Book";
 
 function EachLocation() {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [imageUrls, setImageUrls] = useState([]);
   const [sliderData, setSliderData] = useState();
   const location = useLocation();
+  const [displayBooking, setDisplayBooking] = useState(false);
 
   useEffect(() => {
     if (location.state && location.state.result) {
@@ -48,6 +50,11 @@ function EachLocation() {
               {selectedLocation?.highlights.map((highlight, index) => (
                 <li key={index}>{highlight.topic}</li>
               ))}
+              <div>
+                <p onClick={() => setDisplayBooking(true)}>
+                  Book a Ticket to Visit
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -68,6 +75,7 @@ function EachLocation() {
             </div>
           ))}
         </div>
+        <Book />
       </section>
     )
   );

@@ -25,12 +25,21 @@ model Location {
   updatedAt  DateTime @updatedAt
 }
 
-model Tourist {
-  id        Int      @id @default(autoincrement())
+model User {
+  id        Int        @id @default(autoincrement())
   firstname String
   lastname  String
-  email     String   @unique
+  email     String     @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  bookings  Bookings[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Bookings {
+  id         Int    @id @default(autoincrement())
+  userId     Int
+  locationId Int
+  printName  String
+  tourist    User?  @relation(fields: [userId], references: [id])
 }

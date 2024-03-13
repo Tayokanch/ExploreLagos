@@ -3,6 +3,7 @@
     height: 100vh;
     background-color: rgb(2, 35, 64);
     overflow: scroll;
+    position: relative;
 
   
 }
@@ -42,12 +43,34 @@
     font-weight: 500;
 }
 
-.slider_header >div:nth-child(2) > p::first-letter{
+.slider_header >div:nth-child(2) > p:first-of-type:first-letter{
     font-size: 3em;
     text-align: 3px 3px 4px #222;
     float: left;
     padding-right: 10px;
      color: rgb(67, 66, 66);;
+}
+
+.slider_header >div:nth-of-type(2)>div{
+    display: grid;
+    place-items: center;
+}
+
+.slider_header >div:nth-of-type(2) >div > p{
+    background-color: rgb(2, 35, 64);
+    color: #acaaaa;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    padding-top: 10px;
+}
+
+.slider_header >div:nth-of-type(2) >div > p:hover{
+    color: rgb(2, 35, 64);
+    background-color: #acaaaa;
+
 }
 .slider_header >div:nth-child(2) > h2{
     font-family: "Rowdies", sans-serif;
@@ -83,6 +106,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     column-gap: 10px;
     padding: 0 20px;
+
 
 }
 

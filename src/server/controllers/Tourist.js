@@ -31,7 +31,7 @@ const loginTourist = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const foundTourist = await prisma.tourist.findUnique({
+        const foundTourist = await prisma.user.findUnique({
             where: {
                 email: email
             }
@@ -48,11 +48,15 @@ const loginTourist = async (req, res) => {
         }
 
         const createToken = (payload, secret) => {
-            const token = jwt.sign(payload, secret);
+            const token = jwt.sign(payload, secret, { expiresIn: '1h' }); 
             return token;
         };
-
-        const generateToken = createToken({ name: foundTourist.firstname }, secret);
+        
+        const generateToken = createToken({ 
+            userId: foundTourist.id,
+            firstName: foundTourist.firstname,
+            lastName: foundTourist.lastname,
+        }, secret);
 
         return res.status(201).json({ data: generateToken });
     } catch (error) {

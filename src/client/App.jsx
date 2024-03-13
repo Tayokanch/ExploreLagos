@@ -22,14 +22,14 @@ export const initialForm = {
 const formContext = createContext();
 function App() {
   const [formInputs, setFormInputs] = useState(initialForm);
-
-  const [userName, setUserName] = useState(null);
+  const [locations, setLocations] = useState();
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
-      setUserName(decodedToken);
+      setLoggedInUser(decodedToken);
     }
   }, []);
 
@@ -38,8 +38,10 @@ function App() {
       value={{
         formInputs,
         setFormInputs,
-        userName,
-        setUserName,
+        loggedInUser,
+        setLoggedInUser,
+        locations,
+        setLocations,
       }}
     >
       <Routes>

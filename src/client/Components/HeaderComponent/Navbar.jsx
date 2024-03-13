@@ -8,13 +8,13 @@ import { formContext } from "../../App.jsx";
 function Navbar() {
   const navigate = useNavigate();
 
-  const { userName, setUserName } = useContext(formContext);
+  const { loggedInUser, setLoggedInUser } = useContext(formContext);
   const handleNavigation = (path) => {
     navigate(path);
   };
 
   const handleLogout = () => {
-    setUserName(null);
+    setLoggedInUser(null);
     localStorage.removeItem("token");
     navigate("/");
   };
@@ -28,9 +28,9 @@ function Navbar() {
         <li>Contact</li>
         <li onClick={() => handleNavigation("/Team")}>Team</li>
 
-        {userName ? (
+        {loggedInUser ? (
           <>
-            <li>{`Hi, ${userName?.name}!`}</li>
+            <li>{`Hi, ${loggedInUser?.firstName}!`}</li>
             <li onClick={() => handleLogout()}>Log out</li>
           </>
         ) : (
