@@ -71,4 +71,6 @@ const getImagePath = (locationId) => {
     }
   };
 
+
+
   export default getImagePath

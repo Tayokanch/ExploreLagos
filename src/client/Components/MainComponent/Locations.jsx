@@ -24,16 +24,6 @@ function Locations({ setLocations, locations }) {
     return data;
   };
 
-  const getImageElements = (locationId) => {
-    const imagePathArray = getImagePath(locationId);
-    return imagePathArray.map((imagePath, index) => (
-      <img
-        key={index}
-        src={imagePath}
-        alt={`Location ${locationId} Image ${index}`}
-      />
-    ));
-  };
 
   const handleLocation = (locationSelected) => {
     navigate(`location/${locationSelected.name}`, {

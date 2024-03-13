@@ -1,0 +1,15 @@
+.s
+
+.image_slider{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.thumbnail{
+    margin-left:20px;
+}
+
+.clicked{
+    border: 5px solid #000000;
+}
