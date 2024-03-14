@@ -3,8 +3,12 @@ import { useState, useEffect } from "react";
 import LocationsCss from "../MainComponent/Locations.module.css";
 import getImagePath from "./imagePath.js";
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
+import { formContext } from "../../App.jsx";
 function Locations({ setLocations, locations }) {
+  const { loggedInUser, selectedLocation, setSelectedLocation } =
+    useContext(formContext);
+
   useEffect(() => {
     fetchLocation();
   }, []);
@@ -13,6 +17,7 @@ function Locations({ setLocations, locations }) {
   const handleNavigation = (path) => {
     navigate(path);
   };
+
   const fetchLocation = async () => {
     const url = "http://localhost:3030/location";
     const response = await fetch(url);
@@ -24,11 +29,16 @@ function Locations({ setLocations, locations }) {
     return data;
   };
 
-
   const handleLocation = (locationSelected) => {
-    navigate(`location/${locationSelected.name}`, {
-      state: { result: locationSelected },
-    });
+    if (loggedInUser) {
+      setSelectedLocation(locationSelected);
+      navigate(`location/${locationSelected.name}`, {
+        state: { result: locationSelected },
+      });
+    } else {
+      navigate("/LoginOrSignUp");
+      setSelectedLocation(locationSelected);
+    }
   };
 
   return (
@@ -39,9 +49,7 @@ function Locations({ setLocations, locations }) {
             <figcaption>{location.name}</figcaption>
             <p>
               {location.about.substring(0, 200).concat("...")}
-              <span onClick={() => handleNavigation("/LoginOrSignUp/*")}>
-                read more
-              </span>
+              <span>read more</span>
             </p>
 
             {getImagePath(location.id)[0] && (

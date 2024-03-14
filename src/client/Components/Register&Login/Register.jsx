@@ -18,7 +18,6 @@ function Register() {
       className={RegisterCss.container}
       style={{ backgroundImage: `url(${bg1})` }}
     >
-      <Navbar />
       <div className={RegisterCss.register_box}>
         <div>"Enjoy LasGidi to the fullest"</div>
         <div>

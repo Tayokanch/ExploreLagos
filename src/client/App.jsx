@@ -24,6 +24,8 @@ function App() {
   const [formInputs, setFormInputs] = useState(initialForm);
   const [locations, setLocations] = useState();
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState("");
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,6 +44,8 @@ function App() {
         setLoggedInUser,
         locations,
         setLocations,
+        selectedLocation,
+        setSelectedLocation
       }}
     >
       <Routes>

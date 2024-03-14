@@ -8,7 +8,8 @@ import { formContext } from "../../App.jsx";
 function Navbar() {
   const navigate = useNavigate();
 
-  const { loggedInUser, setLoggedInUser } = useContext(formContext);
+  const { loggedInUser, setLoggedInUser, setSelectedLocation } =
+    useContext(formContext);
   const handleNavigation = (path) => {
     navigate(path);
   };
@@ -17,6 +18,7 @@ function Navbar() {
     setLoggedInUser(null);
     localStorage.removeItem("token");
     navigate("/");
+    setSelectedLocation("");
   };
   return (
     <div className={NavCSS.nav_Container}>

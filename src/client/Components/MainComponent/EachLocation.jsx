@@ -3,9 +3,11 @@ import { useLocation } from "react-router-dom";
 import "./EachLocation.css";
 import getImagePath from "./imagePath";
 import Book from "../Booking/Book";
+import { useContext } from "react";
+import { formContext } from "../../App";
 
 function EachLocation() {
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const { selectedLocation, setSelectedLocation } = useContext(formContext);
   const [imageUrls, setImageUrls] = useState([]);
   const [sliderData, setSliderData] = useState();
   const location = useLocation();

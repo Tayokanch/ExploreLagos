@@ -3,11 +3,19 @@ import "./Log.css";
 import { formContext } from "../../App";
 import { initialForm } from "../../App";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 const url = "http://localhost:3030";
 
 function Log() {
-  const { formInputs, setFormInputs, loggedInUser, setLoggedInUser } =
-    useContext(formContext);
+  const {
+    formInputs,
+    setFormInputs,
+    loggedInUser,
+    setLoggedInUser,
+    selectedLocation,
+  } = useContext(formContext);
+  const navigate = useNavigate();
+
   const [loginResponse, setLoginResponse] = useState("");
   const options = {
     method: "POST",
@@ -39,6 +47,14 @@ function Log() {
         console.log("here is the decoded token", decodeToken);
 
         localStorage.setItem("token", JSON.stringify(loginToken.data));
+
+        if (loggedInUser && selectedLocation) {
+          navigate(`location/${selectedLocation?.name}`);
+          console.log("this is the logged in user", loggedInUser);
+          console.log("this is the selected Location", selectedLocation);
+        } else {
+          navigate("/");
+        }
       }
     } catch (err) {
       console.error(err);
@@ -46,14 +62,6 @@ function Log() {
 
     setFormInputs(initialForm);
   };
-
-  useEffect(() => {
-    console.log("This is loggedin User", loggedInUser);
-  }, [loggedInUser]);
-
-  useEffect(() => {
-    console.log("This is login response", loginResponse);
-  }, [loginResponse]);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
