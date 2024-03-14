@@ -1,17 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./Booking.css";
 import { formContext } from "../../App";
 
 function Book() {
   const [price, setPrice] = useState(0);
   const [bookingFor, setBookingFor] = useState("");
-
-  const { locations, loggedInUser, setLoggedInUser } = useContext(formContext);
-
+  const [person, setPerson] = useState("");
+  const [originalPrice, setOriginalPrice] = useState(0); 
+  const [teenageDiscount, setTeenageDiscount] = useState(true);
+  const [childrenDiscount, setChildrenDiscount] = useState(true);
+  const { locations } = useContext(formContext);
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
   const userId = user.userId;
-
+  let foundLocation;
   const [booking, setBooking] = useState({
     printName: "",
     locationId: "",
@@ -25,8 +27,12 @@ function Book() {
       printName: "",
       locationId: "",
       userId: userId,
+      price: null,
     });
-    console.log(booking);
+
+    console.log("this is the new Booking", booking);
+
+    setPrice(0);
   };
 
   const handleBooking = (e) => {
@@ -44,14 +50,40 @@ function Book() {
       locationId: value,
       bookingfor: "",
     });
+
+    if (value) {
+      foundLocation = locations?.find(
+        (location) => Number(location.id) === Number(value)
+      );
+      console.log(foundLocation);
+
+      setPrice(foundLocation?.price);
+      setOriginalPrice(foundLocation?.price); // Set original price when location changes
+    }
+    setChildrenDiscount(true);
+    setTeenageDiscount(true);
   };
 
-  const handleBookingForChange = (bookingType) => {
-    setBooking({
-      ...booking,
-      bookingfor: bookingType,
-    });
+  const handleBookingForChange = (personType) => {
+    setBooking((prevBooking) => ({
+      ...prevBooking,
+      bookingfor: personType,
+      price: price,
+    }));
+    setPerson(personType);
+    if (personType === "Adult") {
+      setPrice(originalPrice); // Reset price when adult is selected
+    }
   };
+
+  if (person === "Teenager" && teenageDiscount) {
+    setPrice((prevPrice) => prevPrice - 5);
+    setTeenageDiscount(false);
+  }
+  if (person === "Children" && childrenDiscount) {
+    setPrice((prevPrice) => prevPrice - 8);
+    setChildrenDiscount(false);
+  }
 
   return (
     <div className="booking_container">
@@ -70,10 +102,7 @@ function Book() {
         </div>
 
         <div>
-          <p
-            className="clicked"
-            onClick={() => handleBookingForChange("Adult")}
-          >
+          <p className="clicked" onClick={() => handleBookingForChange("Adult")}>
             Adult
           </p>
           <p onClick={() => handleBookingForChange("Teenager")}>Teenager</p>
@@ -89,7 +118,7 @@ function Book() {
           />
         </div>
         <div>
-          <p>{`£${price}.00`}</p>
+          <p>{price && `£${price}.00`}</p>
         </div>
         <div>
           <button type="submit" id="close-popup">

@@ -35,6 +35,10 @@ function Locations({ setLocations, locations }) {
       navigate(`location/${locationSelected.name}`, {
         state: { result: locationSelected },
       });
+
+      console.log('this is the  Location selected', locationSelected)
+      console.log('this is the selected Location', selectedLocation)
+
     } else {
       navigate("/LoginOrSignUp");
       setSelectedLocation(locationSelected);

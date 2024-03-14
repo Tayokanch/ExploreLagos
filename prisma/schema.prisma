@@ -37,10 +37,12 @@ model User {
 }
 
 model Bookings {
-  id         Int    @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   userId     Int
   locationId Int
   printName  String
   bookingfor String
-  tourist    User?  @relation(fields: [userId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

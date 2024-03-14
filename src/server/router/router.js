@@ -5,12 +5,14 @@ import {createLocation} from '../controllers/location.js'
 import { getLocations } from '../controllers/location.js';
 import {createTourist} from '../controllers/Tourist.js';
 import { loginTourist } from '../controllers/Tourist.js';
+import createBookings from '../controllers/bookings.js';
 
 
 router.post('/', createLocation);
 router.get('/', getLocations )
 router.post('/register', createTourist)
 router.post('/login', loginTourist)
+router.post('/', createBookings)
 
 
 export default router;
