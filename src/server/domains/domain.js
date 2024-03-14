@@ -19,16 +19,23 @@ const createLocationDb = async(name,category, about, highlights, price)=> await 
     }
   })
 
-  const createBookingDb = async(printName, locationId, userId, price, bookingfor)=> prisma.bookings.create({
-    data:{
-      userId,
-      printName,
-      locationId,
-      price ,
-      bookingfor: bookingfor
-  
+  const createBookingDb = async (userId, locationId, printName, bookingfor, price) => {
+    try {
+      return await prisma.bookings.create({
+        data: {
+          user: { connect: { id: userId } },
+          locationId,
+          printName,
+          bookingfor,
+          price,
+        }
+      });
+    } catch (error) {
+      console.error("Error creating booking:", error);
+      throw error;
     }
-  })
+  }
+  
   
   export  { createLocationDb, createTouristDb, createBookingDb}
 

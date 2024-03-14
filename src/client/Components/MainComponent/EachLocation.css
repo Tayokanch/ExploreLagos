@@ -3,7 +3,7 @@
     height: 100vh;
     background-color: rgb(2, 35, 64);
     overflow: scroll;
-    position: relative;
+
 
   
 }
@@ -19,7 +19,8 @@
 
 }
 .slider_container > div:first-of-type{
-    position: sticky;
+/*     position: sticky;
+ */    position: relative;
     top: 0;
     margin-bottom: 10px;
 }

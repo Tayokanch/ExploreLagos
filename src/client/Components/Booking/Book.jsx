@@ -1,36 +1,61 @@
 import React, { useState, useContext } from "react";
 import "./Booking.css";
 import { formContext } from "../../App";
+const url = "http://localhost:3030";
 
-function Book() {
+function Book({ popUp }) {
   const [price, setPrice] = useState(0);
   const [bookingFor, setBookingFor] = useState("");
   const [person, setPerson] = useState("");
-  const [originalPrice, setOriginalPrice] = useState(0); 
+  const [originalPrice, setOriginalPrice] = useState(0);
   const [teenageDiscount, setTeenageDiscount] = useState(true);
   const [childrenDiscount, setChildrenDiscount] = useState(true);
-  const { locations } = useContext(formContext);
+  const { locations, loggedInUser } = useContext(formContext);
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
-  const userId = user.userId;
+  const UserId = user.userId;
   let foundLocation;
+
   const [booking, setBooking] = useState({
+    user: { connect: { id: UserId } },
+    locationId: null,
+    userId: UserId,
     printName: "",
-    locationId: "",
-    userId: userId,
     bookingfor: "",
+    price: null,
   });
 
-  const handleSubmit = (e) => {
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(booking),
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch(`${url}/bookings`, options);
+      console.log("this is the response status", response.status);
+
+      if (!response.ok) {
+        console.error("HTTP error! Status:", response.status);
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+    } catch (err) {
+      setError(err.message);
+      console.error("An error occurred:", err);
+    }
+
+    // Reset form fields and state after handling the response
     setBooking({
       printName: "",
       locationId: "",
-      userId: userId,
+      userId: UserId,
       price: null,
     });
-
-    console.log("this is the new Booking", booking);
 
     setPrice(0);
   };
@@ -47,7 +72,7 @@ function Book() {
     const { value } = e.target;
     setBooking({
       ...booking,
-      locationId: value,
+      locationId: Number(value),
       bookingfor: "",
     });
 
@@ -58,7 +83,7 @@ function Book() {
       console.log(foundLocation);
 
       setPrice(foundLocation?.price);
-      setOriginalPrice(foundLocation?.price); // Set original price when location changes
+      setOriginalPrice(foundLocation?.price); 
     }
     setChildrenDiscount(true);
     setTeenageDiscount(true);
@@ -72,7 +97,7 @@ function Book() {
     }));
     setPerson(personType);
     if (personType === "Adult") {
-      setPrice(originalPrice); // Reset price when adult is selected
+      setPrice(originalPrice); 
     }
   };
 
@@ -87,45 +112,51 @@ function Book() {
 
   return (
     <div className="booking_container">
-      <form className="popup" id="popup-box" onSubmit={handleSubmit}>
-        <h2>Your Destination</h2>
-        <div>
-          <select value={booking.locationId} onChange={handleSelectChange}>
-            <option value="">Select Destination</option>
-            {locations &&
-              locations.map((location) => (
-                <option key={location.id} value={location.id}>
-                  {location.name}
-                </option>
-              ))}
-          </select>
-        </div>
+      <p className="cancel">x</p>
+      <div className={`booking_box${popUp ? "active" : ""}`}>
+        <form className="popup" id="popup-box" onSubmit={handleSubmit}>
+          <h2>Your Destination</h2>
+          <div>
+            <select value={booking.locationId} onChange={handleSelectChange}>
+              <option value="">Select Destination</option>
+              {locations &&
+                locations.map((location) => (
+                  <option key={location.id} value={location.id}>
+                    {location.name}
+                  </option>
+                ))}
+            </select>
+          </div>
 
-        <div>
-          <p className="clicked" onClick={() => handleBookingForChange("Adult")}>
-            Adult
-          </p>
-          <p onClick={() => handleBookingForChange("Teenager")}>Teenager</p>
-          <p onClick={() => handleBookingForChange("Children")}>Children</p>
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Print Name"
-            name="printName"
-            value={booking.printName}
-            onChange={handleBooking}
-          />
-        </div>
-        <div>
-          <p>{price && `£${price}.00`}</p>
-        </div>
-        <div>
-          <button type="submit" id="close-popup">
-            Book
-          </button>
-        </div>
-      </form>
+          <div>
+            <p
+              className="clicked"
+              onClick={() => handleBookingForChange("Adult")}
+            >
+              Adult
+            </p>
+            <p onClick={() => handleBookingForChange("Teenager")}>Teenager</p>
+            <p onClick={() => handleBookingForChange("Children")}>Children</p>
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Print Name"
+              name="printName"
+              value={booking.printName}
+              onChange={handleBooking}
+            />
+          </div>
+          <div>
+            <p>{price && `£${price}.00`}</p>
+          </div>
+          <div>
+            <button type="submit" id="close-popup">
+              Book
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

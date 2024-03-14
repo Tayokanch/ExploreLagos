@@ -1,15 +1,37 @@
-.booking_container {
+.booking_container{
     position: absolute;
-    top: 50%;
+    top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(3, 31, 31);
-    width: 300px;
+    width: 400px;
     padding: 0 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust the values as needed */
+    transition: transform 0.8s, top 0.4s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-.booking_container > div h2{
+.cancel {
+    font-size: 4rem;
+    color: red;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: -28px;
+    right: -3px;
+  
+    font-family: 'roboto';
+}
+
+.booking_box {
+    position: relative;
+}
+
+
+/* .booking_box.active{
+    top: 50%;
+    visibility: visible;
+} */
+.pop >h2{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1.5rem;
     color: antiquewhite;

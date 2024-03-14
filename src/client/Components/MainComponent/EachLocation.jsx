@@ -11,7 +11,7 @@ function EachLocation() {
   const [imageUrls, setImageUrls] = useState([]);
   const [sliderData, setSliderData] = useState();
   const location = useLocation();
-  const [displayBooking, setDisplayBooking] = useState(false);
+  const [popUp, setPopUp] = useState(false);
 
   useEffect(() => {
     if (location.state && location.state.result) {
@@ -37,6 +37,11 @@ function EachLocation() {
     setSliderData(slider);
     console.log("this is the slider", slider);
   };
+
+  const displayBooking = () => {
+    setPopUp(true);
+    console.log("popUp is", popUp);
+  };
   return (
     selectedLocation && (
       <section className="slider_container">
@@ -53,9 +58,7 @@ function EachLocation() {
                 <li key={index}>{highlight.topic}</li>
               ))}
               <div>
-                <p onClick={() => setDisplayBooking(true)}>
-                  Book a Ticket to Visit
-                </p>
+                <p onClick={displayBooking}>Book a Ticket to Visit</p>
               </div>
             </div>
           </div>
@@ -77,7 +80,7 @@ function EachLocation() {
             </div>
           ))}
         </div>
-        <Book />
+        <Book popUp={popUp} />
       </section>
     )
   );

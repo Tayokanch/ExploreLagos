@@ -30,7 +30,7 @@ function Log() {
     e.preventDefault();
 
     try {
-      const verifyLogin = await fetch(`${url}/tourist/login`, options);
+      const verifyLogin = await fetch(`${url}/user/login`, options);
       if (!verifyLogin.ok) {
         setLoginResponse("Invalid email or password");
         throw new Error("Failed to login");

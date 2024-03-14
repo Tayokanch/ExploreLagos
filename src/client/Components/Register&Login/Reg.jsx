@@ -28,7 +28,7 @@ function Reg() {
   const TouristReg = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${url}/tourist/register`, options);
+      const response = await fetch(`${url}/user/register`, options);
       const data = await response.json();
       console.log("formInput before Initial", formInputs);
       setRegisterResponse(

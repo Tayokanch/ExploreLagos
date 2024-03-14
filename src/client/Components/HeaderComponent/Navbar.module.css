@@ -20,16 +20,43 @@
 .navbar{
     display: grid;
     grid-auto-flow: column;
+    column-gap: 10px;
 }
 .navbar > li{
     list-style: none;
     font-family: "Arvo", serif;
+    padding: 5px;
     font-size: 1.5rem;
     color: #f0f8ff;
     text-align: center;
+}
+
+.navbar > li:nth-of-type(5){
+    background-color: rgb(9, 82, 143);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(200, 190, 190, 0.732); 
+
 }
 .navbar > li:hover{
    color: rgb(106, 174, 229);
     font-family: 1.8rem;
     cursor: pointer;
 }
+
+.bookings {
+    position: relative; 
+  }
+  
+  .tickets {
+    position: absolute;
+    display: grid;
+    place-content: center;
+    top: 0;
+    right: 0; 
+    background-color: brown;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    font-weight: bold;
+  }
