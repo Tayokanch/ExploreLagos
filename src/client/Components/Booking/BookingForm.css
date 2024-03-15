@@ -8,10 +8,13 @@
     padding: 0 20px;
     transition: transform 0.8s, top 0.4s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    visibility:hidden;
 }
 
 .active_booking_container{
     top:50%;
+    visibility: visible;
+
 }
 
 
@@ -24,7 +27,6 @@
     height: 30px;
     top: -28px;
     right: -3px;
-  
     font-family: 'roboto';
 }
 
@@ -32,21 +34,22 @@
     position: relative;
 }
 
-
-/* .booking_box.active{
-    top: 50%;
-    visibility: visible;
-} */
-.pop >h2{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+#popup-box h2{
+    font-family: "Rowdies", sans-serif;
     font-size: 1.5rem;
     color: antiquewhite;
+    font-weight: bold;
     text-align: center;
     padding-bottom:20px ;
 }
+
+
+
+
 .popup> div:first-of-type{
     padding-bottom: 20px;
     outline: none;
+    
 
 }
 .popup> div:first-of-type > select{

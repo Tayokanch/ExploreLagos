@@ -125,7 +125,7 @@ function BookingForm({ popUp, setPopUp }) {
       </p>
       <div className={`booking_box`}>
         <form className="popup" id="popup-box" onSubmit={handleSubmit}>
-          <h2>Your Destination</h2>
+          <h2 >Your Destination</h2>
           <div>
             <select value={booking.locationId} onChange={handleSelectChange}>
               <option value="">Select Destination</option>
