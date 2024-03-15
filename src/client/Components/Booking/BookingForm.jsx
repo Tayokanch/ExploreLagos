@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import "./BookingForm.css";
 import { formContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 const url = "http://localhost:3030";
 
-function BookingForm({ popUp,setPopUp,  }) {
+function BookingForm({ popUp, setPopUp }) {
+  const navigate = useNavigate();
   const [price, setPrice] = useState(0);
   const [bookingFor, setBookingFor] = useState("");
   const [person, setPerson] = useState("");
@@ -58,6 +60,7 @@ function BookingForm({ popUp,setPopUp,  }) {
     });
 
     setPrice(0);
+    navigate("/");
   };
 
   const handleBooking = (e) => {
@@ -114,7 +117,9 @@ function BookingForm({ popUp,setPopUp,  }) {
     setPopUp(false);
   };
   return (
-    <div className={`booking_container ${popUp ? "active_booking_container" : ""}`}>
+    <div
+      className={`booking_container ${popUp ? "active_booking_container" : ""}`}
+    >
       <p className="cancel" onClick={() => cancelForm()}>
         x
       </p>

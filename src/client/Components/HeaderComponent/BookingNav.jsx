@@ -5,7 +5,7 @@ import { formContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 function BookingNav() {
-  const { bookings } = useContext(formContext);
+  const { numOfBookings } = useContext(formContext);
   const navigate = useNavigate();
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
@@ -21,7 +21,7 @@ function BookingNav() {
         <li className={BookingCss.bookings} onClick={handleNavigate}>
           Bookings
           <div className={BookingCss.tickets}>
-            <p>{bookings}</p>
+            <p>{numOfBookings && numOfBookings.length}</p>
           </div>
         </li>
       }

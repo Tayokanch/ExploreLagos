@@ -7,9 +7,10 @@ import UserBookingCss from "./UserBooking.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import getImagePath from "../MainComponent/imagePath.js";
 
 function UserBookings() {
-  const { loggedInUser } = useContext(formContext);
+  const { numOfBookings, setNumOfbookings } = useContext(formContext);
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
   const userId = user.userId;
@@ -26,9 +27,16 @@ function UserBookings() {
           <p>TY</p>
         </div>
         <BookingNav />
-        <LogOut />
+        <LogOut />{" "}
       </div>
-      <div className={UserBookingCss.main}>body</div>
+      <div className={UserBookingCss.main}>
+        {numOfBookings?.map((booking) => (
+          <div key={booking.id}>
+            <p>{booking.printName}</p>
+            <img src={`../../${getImagePath(booking.locationId)}`} alt={booking.locationId} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

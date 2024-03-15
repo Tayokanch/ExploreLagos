@@ -13,9 +13,7 @@ function Navbar() {
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
   const foundUserId = user && user.userId ? user.userId : null;
-
-  console.log("this is foundUSer", foundUserId);
-
+  const { setNumOfBookings, numOfBookings } = useContext(formContext);
   const getBookings = async () => {
     try {
       const userBooking = await fetch(`${url}/bookings/${foundUserId}`);
@@ -25,8 +23,7 @@ function Navbar() {
       }
       const bookings = await userBooking.json();
       if (bookings) {
-        console.log("Here are the user bookings", bookings);
-        setBookings(bookings.Bookings.length);
+        setNumOfBookings(bookings.Bookings);
       }
     } catch (error) {
       console.error("Error fetching bookings:", error);
@@ -50,6 +47,7 @@ function Navbar() {
   useEffect(() => {
     if (foundUserId) {
       getBookings();
+      console.log("this is bookings", numOfBookings);
     }
   }, [foundUserId]);
 

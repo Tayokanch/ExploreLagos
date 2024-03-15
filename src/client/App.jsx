@@ -27,6 +27,7 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [bookings, setBookings] = useState(0);
+  const [numOfBookings, setNumOfBookings] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -49,6 +50,8 @@ function App() {
         setSelectedLocation,
         bookings,
         setBookings,
+        numOfBookings,
+        setNumOfBookings,
       }}
     >
       <Routes>
