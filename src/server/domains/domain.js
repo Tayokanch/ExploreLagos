@@ -35,9 +35,22 @@ const createLocationDb = async(name,category, about, highlights, price)=> await 
       throw error;
     }
   }
+
+  const getUserBookings = async (theUserId) => {
+    try {
+      const userBookings = await prisma.bookings.findMany({
+        where: {
+          userId: theUserId,
+        },
+      });
+      return userBookings
+    } catch (error) {
+      console.error("Error fetching user bookings:", error);
+    }
+};
   
   
-  export  { createLocationDb, createTouristDb, createBookingDb}
+  export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings}
 
 
   

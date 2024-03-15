@@ -1,5 +1,6 @@
-import prisma from '../utils/prisma.js'
+import prisma from '../utils/prisma.js';
 import { createBookingDb } from '../domains/domain.js'
+import { getUserBookings } from '../domains/domain.js';
 const createBookings = async (req, res) => {
     const { userId, locationId, printName, bookingfor, price } = req.body;
   
@@ -15,7 +16,22 @@ const createBookings = async (req, res) => {
       console.log(e.message);
       return res.status(500).json({ error: e.message });
     }
-  }
+
+
+}
+
+const getBookings = async(req, res)=>{
+    const userId = Number(req.params.userId);  
+    try{
+        const userBookings = await getUserBookings(userId)
+        return res.status(201).json({Bookings: userBookings})
+    }catch(e){
+        console.error("Error fetching user bookings:", e);
+        res.status(500).json({e:'Internal server error'})
+    }
+}
+
+
   
 
-export default createBookings
+export  {createBookings, getBookings}

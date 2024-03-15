@@ -30,11 +30,9 @@ function Reg() {
     try {
       const response = await fetch(`${url}/user/register`, options);
       const data = await response.json();
-      console.log("formInput before Initial", formInputs);
       setRegisterResponse(
         `Successfully registered: ${data.formInputs.firstname}`
       );
-      console.log("formInput after Initial", formInputs);
     } catch (err) {
       setError(err.error);
       console.error("this is the error", err);
