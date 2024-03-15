@@ -1,0 +1,8 @@
+ .log_out{
+    list-style: none;
+    font-family: "Arvo", serif;
+    padding: 5px;
+    font-size: 1.5rem;
+    color: #f0f8ff;
+    text-align: center;
+}

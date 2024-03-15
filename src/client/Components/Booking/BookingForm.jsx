@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import "./Booking.css";
+import "./BookingForm.css";
 import { formContext } from "../../App";
 const url = "http://localhost:3030";
 
-function Book({ popUp }) {
+function BookingForm({ popUp,setPopUp,  }) {
   const [price, setPrice] = useState(0);
   const [bookingFor, setBookingFor] = useState("");
   const [person, setPerson] = useState("");
@@ -83,7 +83,7 @@ function Book({ popUp }) {
       console.log(foundLocation);
 
       setPrice(foundLocation?.price);
-      setOriginalPrice(foundLocation?.price); 
+      setOriginalPrice(foundLocation?.price);
     }
     setChildrenDiscount(true);
     setTeenageDiscount(true);
@@ -97,7 +97,7 @@ function Book({ popUp }) {
     }));
     setPerson(personType);
     if (personType === "Adult") {
-      setPrice(originalPrice); 
+      setPrice(originalPrice);
     }
   };
 
@@ -110,10 +110,15 @@ function Book({ popUp }) {
     setChildrenDiscount(false);
   }
 
+  const cancelForm = () => {
+    setPopUp(false);
+  };
   return (
-    <div className="booking_container">
-      <p className="cancel">x</p>
-      <div className={`booking_box${popUp ? "active" : ""}`}>
+    <div className={`booking_container ${popUp ? "active_booking_container" : ""}`}>
+      <p className="cancel" onClick={() => cancelForm()}>
+        x
+      </p>
+      <div className={`booking_box`}>
         <form className="popup" id="popup-box" onSubmit={handleSubmit}>
           <h2>Your Destination</h2>
           <div>
@@ -161,4 +166,4 @@ function Book({ popUp }) {
   );
 }
 
-export default Book;
+export default BookingForm;

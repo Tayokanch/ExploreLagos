@@ -11,6 +11,7 @@ import TeamLogin from "./Components/Team/TeamLogin.jsx";
 import EachLocation from "./Components/MainComponent/EachLocation.jsx";
 import { createContext } from "react";
 import { jwtDecode } from "jwt-decode";
+import UserBookings from "./Components/Booking/UserBookings.jsx";
 import "./App.css";
 
 export const initialForm = {
@@ -25,7 +26,7 @@ function App() {
   const [locations, setLocations] = useState();
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState("");
-
+  const [bookings, setBookings] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -45,7 +46,9 @@ function App() {
         locations,
         setLocations,
         selectedLocation,
-        setSelectedLocation
+        setSelectedLocation,
+        bookings,
+        setBookings,
       }}
     >
       <Routes>
@@ -54,6 +57,7 @@ function App() {
         <Route path="/Team/*" element={<Staff />}></Route>
         <Route path="/TeamLogin/*" element={<TeamLogin />}></Route>
         <Route path="/location/:name" element={<EachLocation />} />
+        <Route path="booking/:userId" element={<UserBookings />} />
       </Routes>
     </formContext.Provider>
   );

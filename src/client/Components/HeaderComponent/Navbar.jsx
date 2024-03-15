@@ -4,6 +4,9 @@ import NavCSS from "./Navbar.module.css";
 import Logo from "./Logo.jsx";
 import { formContext } from "../../App.jsx";
 import prisma from "../../../server/utils/prisma.js";
+import LogOut from "./LogOut.jsx";
+import BookingNav from "./BookingNav.jsx";
+
 const url = "http://localhost:3030";
 
 function Navbar() {
@@ -31,10 +34,14 @@ function Navbar() {
   };
 
   const navigate = useNavigate();
-  const [bookings, setBookings] = useState(0);
 
-  const { loggedInUser, setLoggedInUser, setSelectedLocation } =
-    useContext(formContext);
+  const {
+    loggedInUser,
+    setLoggedInUser,
+    setSelectedLocation,
+    bookings,
+    setBookings,
+  } = useContext(formContext);
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -66,13 +73,8 @@ function Navbar() {
         {loggedInUser ? (
           <>
             <li>{`Hi, ${loggedInUser?.firstName}!`}</li>
-            <li className={NavCSS.bookings}>
-              Bookings
-              <div className={NavCSS.tickets}>
-                <p>{bookings}</p>
-              </div>
-            </li>
-            <li onClick={() => handleLogout()}>Log out</li>
+            <BookingNav />
+            <LogOut />
           </>
         ) : (
           <li onClick={() => handleNavigation("/LoginOrSignUp")}>Sign up/in</li>

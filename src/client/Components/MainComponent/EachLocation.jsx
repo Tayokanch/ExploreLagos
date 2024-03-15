@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./EachLocation.css";
 import getImagePath from "./imagePath";
-import Book from "../Booking/Book";
+import Book from "../Booking/BookingForm";
 import { useContext } from "react";
 import { formContext } from "../../App";
 
@@ -12,6 +12,7 @@ function EachLocation() {
   const [sliderData, setSliderData] = useState();
   const location = useLocation();
   const [popUp, setPopUp] = useState(false);
+  const [cancelBookingForm, setCancelBookingForm] = useState(false);
 
   useEffect(() => {
     if (location.state && location.state.result) {
@@ -80,7 +81,12 @@ function EachLocation() {
             </div>
           ))}
         </div>
-        <Book popUp={popUp} />
+        <Book
+          popUp={popUp}
+          setPopUp={setPopUp}
+          cancelBookingForm={cancelBookingForm}
+          setCancelBookingForm={setCancelBookingForm}
+        />
       </section>
     )
   );

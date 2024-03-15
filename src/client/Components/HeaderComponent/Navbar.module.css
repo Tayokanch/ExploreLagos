@@ -31,12 +31,6 @@
     text-align: center;
 }
 
-.navbar > li:nth-of-type(5){
-    background-color: rgb(9, 82, 143);
-    position: relative;
-    box-shadow: 0 2px 4px rgba(200, 190, 190, 0.732); 
-
-}
 .navbar > li:hover{
    color: rgb(106, 174, 229);
     font-family: 1.8rem;
@@ -45,9 +39,10 @@
 
 .bookings {
     position: relative; 
-  }
+}
+
   
-  .tickets {
+.tickets {
     position: absolute;
     display: grid;
     place-content: center;

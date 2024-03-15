@@ -1,6 +1,6 @@
 .booking_container{
     position: absolute;
-    top:50%;
+    top:-50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(3, 31, 31);
@@ -9,6 +9,12 @@
     transition: transform 0.8s, top 0.4s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
+.active_booking_container{
+    top:50%;
+}
+
+
 
 .cancel {
     font-size: 4rem;
@@ -66,7 +72,6 @@
     padding: 8px;
 }
 .popup > div:nth-of-type(2) > p.clicked{
-    background-color: darkcyan;
     background-color: darkolivegreen;
 }
 
