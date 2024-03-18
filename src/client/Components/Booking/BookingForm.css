@@ -67,14 +67,14 @@
 }
 
 
-.popup > div:nth-of-type(2) > p{
+.popup > div:nth-of-type(2)> div > p{
     background-color: antiquewhite;
     text-align: center;
     font-size: 0.9rem;
     font-family: sans-serif;
     padding: 8px;
 }
-.popup > div:nth-of-type(2) > p.clicked{
+.popup > div:nth-of-type(2) >div > p.clicked{
     background-color: darkolivegreen;
 }
 
@@ -85,7 +85,7 @@
 
    
 }
-.popup > div:nth-of-type(3) label{
+.popup > div:nth-of-type(3)  label{
     color: antiquewhite;
     font-family: serif;
     font-size: 1.5rem;

@@ -41,17 +41,13 @@ function Log() {
         const decodeToken = jwtDecode(loginToken.data);
 
         setLoggedInUser(decodeToken);
-
-        localStorage.setItem("decoded", JSON.stringify(decodeToken));
-
-        console.log("here is the decoded token", decodeToken);
+        //LoggedInUser User is showing as empty in the BookingForm component
 
         localStorage.setItem("token", JSON.stringify(loginToken.data));
+        localStorage.setItem("decoded", JSON.stringify(decodeToken));
 
         if (loggedInUser && selectedLocation) {
           navigate(`location/${selectedLocation?.name}`);
-          console.log("this is the logged in user", loggedInUser);
-          console.log("this is the selected Location", selectedLocation);
         } else {
           navigate("/");
         }

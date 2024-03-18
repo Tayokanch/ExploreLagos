@@ -6,22 +6,19 @@ const url = "http://localhost:3030";
 
 function BookingForm({ popUp, setPopUp }) {
   const navigate = useNavigate();
-  const [price, setPrice] = useState(0);
+  const [sellingPrice, setSellingPrice] = useState(0);
   const [bookingFor, setBookingFor] = useState("");
-  const [person, setPerson] = useState("");
-  const [originalPrice, setOriginalPrice] = useState(0);
-  const [teenageDiscount, setTeenageDiscount] = useState(true);
-  const [childrenDiscount, setChildrenDiscount] = useState(true);
   const { locations, loggedInUser } = useContext(formContext);
+  const [locationSelected, setLocationSelected] = useState(null);
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
   const UserId = user.userId;
-  let foundLocation;
 
+  const bookingType = ["Adult", "Children", "Teenager"];
   const [booking, setBooking] = useState({
-    user: { connect: { id: UserId } },
+    user: { connect: { id: loggedInUser?.userId } },
     locationId: null,
-    userId: UserId,
+    userId: loggedInUser?.userId,
     printName: "",
     bookingfor: "",
     price: null,
@@ -47,19 +44,18 @@ function BookingForm({ popUp, setPopUp }) {
 
       const data = await response.json();
     } catch (err) {
-      setError(err.message);
       console.error("An error occurred:", err);
     }
 
-    // Reset form fields and state after handling the response
     setBooking({
       printName: "",
       locationId: "",
-      userId: UserId,
+      userId: loggedInUser?.userId,
       price: null,
     });
 
-    setPrice(0);
+    setSellingPrice(0);
+    setLocationSelected(null);
     navigate("/");
   };
 
@@ -73,49 +69,59 @@ function BookingForm({ popUp, setPopUp }) {
 
   const handleSelectChange = (e) => {
     const { value } = e.target;
+    const selectedLocation = locations.find(
+      (location) => Number(location.id) === Number(value)
+    );
+
+    setLocationSelected(selectedLocation);
+    if (selectedLocation) {
+      setSellingPrice(selectedLocation?.price);
+    }
+
     setBooking({
       ...booking,
       locationId: Number(value),
       bookingfor: "",
     });
-
-    if (value) {
-      foundLocation = locations?.find(
-        (location) => Number(location.id) === Number(value)
-      );
-      console.log(foundLocation);
-
-      setPrice(foundLocation?.price);
-      setOriginalPrice(foundLocation?.price);
-    }
-    setChildrenDiscount(true);
-    setTeenageDiscount(true);
   };
 
   const handleBookingForChange = (personType) => {
-    setBooking((prevBooking) => ({
-      ...prevBooking,
-      bookingfor: personType,
-      price: price,
-    }));
-    setPerson(personType);
-    if (personType === "Adult") {
-      setPrice(originalPrice);
+    let newBookingFor = "";
+    let newSellingPrice = 0;
+
+    if (locationSelected) {
+      switch (personType) {
+        case "Adult":
+          newSellingPrice = Number(locationSelected.price);
+          newBookingFor = personType;
+          break;
+        case "Teenager":
+          newSellingPrice = Number(locationSelected.price) - 5;
+          newBookingFor = personType;
+          break;
+        case "Children":
+          newSellingPrice = Number(locationSelected.price) - 8;
+          newBookingFor = personType;
+          break;
+        default:
+          break;
+      }
+
+      setSellingPrice(newSellingPrice);
+      setBookingFor(newBookingFor);
+
+      setBooking({
+        ...booking,
+        price: newSellingPrice,
+        bookingfor: newBookingFor,
+      });
     }
   };
-
-  if (person === "Teenager" && teenageDiscount) {
-    setPrice((prevPrice) => prevPrice - 5);
-    setTeenageDiscount(false);
-  }
-  if (person === "Children" && childrenDiscount) {
-    setPrice((prevPrice) => prevPrice - 8);
-    setChildrenDiscount(false);
-  }
 
   const cancelForm = () => {
     setPopUp(false);
   };
+
   return (
     <div
       className={`booking_container ${popUp ? "active_booking_container" : ""}`}
@@ -125,7 +131,7 @@ function BookingForm({ popUp, setPopUp }) {
       </p>
       <div className={`booking_box`}>
         <form className="popup" id="popup-box" onSubmit={handleSubmit}>
-          <h2 >Your Destination</h2>
+          <h2>Your Destination</h2>
           <div>
             <select value={booking.locationId} onChange={handleSelectChange}>
               <option value="">Select Destination</option>
@@ -139,15 +145,18 @@ function BookingForm({ popUp, setPopUp }) {
           </div>
 
           <div>
-            <p
-              className="clicked"
-              onClick={() => handleBookingForChange("Adult")}
-            >
-              Adult
-            </p>
-            <p onClick={() => handleBookingForChange("Teenager")}>Teenager</p>
-            <p onClick={() => handleBookingForChange("Children")}>Children</p>
+            {bookingType.map((type, index) => (
+              <div key={index}>
+                <p
+                  className="clicked"
+                  onClick={() => handleBookingForChange(type)}
+                >
+                  {type}
+                </p>
+              </div>
+            ))}
           </div>
+
           <div>
             <input
               type="text"
@@ -158,7 +167,7 @@ function BookingForm({ popUp, setPopUp }) {
             />
           </div>
           <div>
-            <p>{price && `£${price}.00`}</p>
+            <p>{sellingPrice && `£${sellingPrice}.00`}</p>
           </div>
           <div>
             <button type="submit" id="close-popup">
