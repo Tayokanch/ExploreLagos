@@ -41,7 +41,6 @@ function Log() {
         const decodeToken = jwtDecode(loginToken.data);
 
         setLoggedInUser(decodeToken);
-        //LoggedInUser User is showing as empty in the BookingForm component
 
         localStorage.setItem("token", JSON.stringify(loginToken.data));
         localStorage.setItem("decoded", JSON.stringify(decodeToken));

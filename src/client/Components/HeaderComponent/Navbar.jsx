@@ -12,24 +12,6 @@ const url = "http://localhost:3030";
 function Navbar() {
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
-  const foundUserId = user && user.userId ? user.userId : null;
-  const { setNumOfBookings, numOfBookings } = useContext(formContext);
-  const getBookings = async () => {
-    try {
-      const userBooking = await fetch(`${url}/bookings/${foundUserId}`);
-      if (!userBooking.ok) {
-        console.error(`HTTP error! Status: ${userBooking.status}`);
-        return; // Exit the function if the response is not OK
-      }
-      const bookings = await userBooking.json();
-      if (bookings) {
-        setNumOfBookings(bookings.Bookings);
-      }
-    } catch (error) {
-      console.error("Error fetching bookings:", error);
-    }
-  };
-
   const navigate = useNavigate();
 
   const {
@@ -38,7 +20,26 @@ function Navbar() {
     setSelectedLocation,
     bookings,
     setBookings,
+    setNumOfBookings,
+    numOfBookings,
   } = useContext(formContext);
+
+  const foundUserId = loggedInUser ? loggedInUser.userId : null;
+  const getBookings = async () => {
+    try {
+      const userBooking = await fetch(`${url}/bookings/${foundUserId}`);
+      if (!userBooking.ok) {
+        console.error(`HTTP error! Status: ${userBooking.status}`);
+        return; // Exit the function if the response is not OK
+      }
+      const { Bookings } = await userBooking.json();
+      if (Bookings) {
+        setNumOfBookings(Bookings);
+      }
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+    }
+  };
 
   const handleNavigation = (path) => {
     navigate(path);

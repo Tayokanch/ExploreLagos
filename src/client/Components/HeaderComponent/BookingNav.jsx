@@ -5,11 +5,9 @@ import { formContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
 function BookingNav() {
-  const { numOfBookings } = useContext(formContext);
+  const { numOfBookings, loggedInUser } = useContext(formContext);
   const navigate = useNavigate();
-  const userJSON = localStorage.getItem("decoded");
-  const user = JSON.parse(userJSON);
-  const userId = user.userId;
+  const userId = loggedInUser?.userId;
 
   const handleNavigate = () => {
     navigate(`/booking/${userId}`);
