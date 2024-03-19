@@ -11,9 +11,6 @@ import getImagePath from "../MainComponent/imagePath.js";
 
 function UserBookings() {
   const { numOfBookings, setNumOfbookings } = useContext(formContext);
-  const userJSON = localStorage.getItem("decoded");
-  const user = JSON.parse(userJSON);
-  const userId = user.userId;
   const navigate = useNavigate();
 
   return (
@@ -33,7 +30,10 @@ function UserBookings() {
         {numOfBookings?.map((booking) => (
           <div key={booking.id}>
             <p>{booking.printName}</p>
-            <img src={`../../${getImagePath(booking.locationId)}`} alt={booking.locationId} />
+            <img
+              src={`../${getImagePath(booking.locationId)[0]}`}
+              alt={booking.locationId}
+            />
           </div>
         ))}
       </div>

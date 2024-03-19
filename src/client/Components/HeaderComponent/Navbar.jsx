@@ -30,7 +30,7 @@ function Navbar() {
       const userBooking = await fetch(`${url}/bookings/${foundUserId}`);
       if (!userBooking.ok) {
         console.error(`HTTP error! Status: ${userBooking.status}`);
-        return; // Exit the function if the response is not OK
+        return;
       }
       const { Bookings } = await userBooking.json();
       if (Bookings) {
@@ -44,6 +44,7 @@ function Navbar() {
   const handleNavigation = (path) => {
     navigate(path);
   };
+
 
   useEffect(() => {
     if (foundUserId) {

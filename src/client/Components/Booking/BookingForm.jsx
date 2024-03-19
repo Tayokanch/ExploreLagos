@@ -8,11 +8,9 @@ function BookingForm({ popUp, setPopUp }) {
   const navigate = useNavigate();
   const [sellingPrice, setSellingPrice] = useState(0);
   const [bookingFor, setBookingFor] = useState("");
+  const [locationName, setLocationName] = useState("");
   const { locations, loggedInUser } = useContext(formContext);
   const [locationSelected, setLocationSelected] = useState(null);
-  const userJSON = localStorage.getItem("decoded");
-  const user = JSON.parse(userJSON);
-  const UserId = user.userId;
 
   const bookingType = ["Adult", "Children", "Teenager"];
   const [booking, setBooking] = useState({
@@ -21,6 +19,7 @@ function BookingForm({ popUp, setPopUp }) {
     userId: loggedInUser?.userId,
     printName: "",
     bookingfor: "",
+    locationName: "",
     price: null,
   });
 
@@ -32,6 +31,7 @@ function BookingForm({ popUp, setPopUp }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("this, is the new booking", booking);
 
     try {
       const response = await fetch(`${url}/bookings`, options);
@@ -50,6 +50,7 @@ function BookingForm({ popUp, setPopUp }) {
     setBooking({
       printName: "",
       locationId: "",
+      locationName: "",
       userId: loggedInUser?.userId,
       price: null,
     });
@@ -65,6 +66,8 @@ function BookingForm({ popUp, setPopUp }) {
       ...booking,
       [name]: value,
     });
+
+    console.log("this is bookings", booking);
   };
 
   const handleSelectChange = (e) => {
@@ -72,15 +75,18 @@ function BookingForm({ popUp, setPopUp }) {
     const selectedLocation = locations.find(
       (location) => Number(location.id) === Number(value)
     );
-
     setLocationSelected(selectedLocation);
     if (selectedLocation) {
+      setLocationName(selectedLocation.name);
+      console.log("this is the selected location", selectedLocation);
+
       setSellingPrice(selectedLocation?.price);
     }
 
     setBooking({
       ...booking,
       locationId: Number(value),
+      locationName: selectedLocation ? selectedLocation.name : "",
       bookingfor: "",
     });
   };
