@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import "./BookingForm.css";
 import { formContext } from "../../App";
 import { useNavigate } from "react-router-dom";
+import { sendEmail } from "./NodeMailer.js";
+
 const url = "http://localhost:3030";
 
 function BookingForm({ popUp, setPopUp }) {
@@ -46,7 +48,7 @@ function BookingForm({ popUp, setPopUp }) {
     } catch (err) {
       console.error("An error occurred:", err);
     }
-
+     await sendEmail()
     setBooking({
       printName: "",
       locationId: "",
@@ -55,6 +57,7 @@ function BookingForm({ popUp, setPopUp }) {
       price: null,
     });
 
+    sendEmail()
     setSellingPrice(0);
     setLocationSelected(null);
     navigate("/");
