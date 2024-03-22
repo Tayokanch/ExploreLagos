@@ -19,7 +19,7 @@ app.use('/location', locationRouter);
 app.use('/user',userRouter)
 app.use('/bookings', bookingsRouter)
 app.use('/sendemail',sendEmailROuter)
-app.use('staff/', staffRouter)
+app.use('/staff', staffRouter)
 
 
 export { app };

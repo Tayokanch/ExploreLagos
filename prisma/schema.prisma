@@ -58,7 +58,9 @@ model Staff {
   id         Int       @id @default(autoincrement())
   firstname  String
   lastname   String
-  username   String
+  username   String   @unique
+  email      String   @unique
+  password   String
   role       String
   locationId Int
   location   Location? @relation(fields: [locationId], references: [id])

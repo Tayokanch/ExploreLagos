@@ -55,7 +55,7 @@ const createLocationDb = async(name,category, about, highlights, price, )=> awai
 
 const staffDb = async (firstname, lastname, username,email, password, role, locationId) => {
   try {
-    return await prisma.bookings.create({
+    return await prisma.staff.create({
       data: {
         location: { connect: { id: locationId } },
         firstname,
@@ -73,9 +73,10 @@ const staffDb = async (firstname, lastname, username,email, password, role, loca
 }
 
 
+
   
   
-  export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings, staffDb}
+export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings, staffDb}
 
 
   

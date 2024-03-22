@@ -2,10 +2,10 @@ import React from "react";
 import TeamHeader from "./TeamHeader";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { jwtDecode } from "jwt-decode";
 import "./TeamLogin.css";
 import "../Register&Login/Log.css";
-
+const url = "http://localhost:3030";
 function TeamLogin() {
   const [staffLoginInput, setStaffLoginInput] = useState({
     username: "",
@@ -35,10 +35,9 @@ function TeamLogin() {
     try {
       const staffLogin = await fetch(`${url}/staff/login`, options);
       if (!staffLogin.ok) {
-        setLoginResponse("Invalid email or password");
         throw new Error("Failed to login");
       }
-      const staffToken = await verifyLogin.json();
+      const staffToken = await staffLogin.json();
       if (staffToken) {
         const decodedToken = jwtDecode(staffToken.token);
         console.log("this is the decoded staff info", decodedToken);
@@ -68,6 +67,7 @@ function TeamLogin() {
               value={staffLoginInput.username}
               required
               onChange={handleChange}
+              autoComplete="username"
             />
           </div>
           <div>
@@ -78,6 +78,7 @@ function TeamLogin() {
               value={staffLoginInput.password}
               required
               onChange={handleChange}
+              autoComplete="password"
             />
           </div>
           <div>
