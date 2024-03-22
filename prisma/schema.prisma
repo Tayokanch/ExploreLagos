@@ -56,8 +56,8 @@ model Bookings {
 
 model Staff {
   id         Int       @id @default(autoincrement())
-  firstname  Int
-  lastname   Int
+  firstname  String
+  lastname   String
   username   String
   role       String
   locationId Int

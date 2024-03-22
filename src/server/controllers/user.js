@@ -28,7 +28,7 @@ const createTourist = async (req, res) => {
 };
 
 const loginTourist = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
 
     try {
         const foundTourist = await prisma.user.findUnique({

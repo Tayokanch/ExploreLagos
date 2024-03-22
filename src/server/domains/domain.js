@@ -51,9 +51,31 @@ const createLocationDb = async(name,category, about, highlights, price, )=> awai
       console.error("Error fetching user bookings:", error);
     }
 };
+
+
+const staffDb = async (firstname, lastname, username,email, password, role, locationId) => {
+  try {
+    return await prisma.bookings.create({
+      data: {
+        location: { connect: { id: locationId } },
+        firstname,
+        lastname,
+        username,
+        email,
+        password,
+        role,
+      }
+    });
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    throw error;
+  }
+}
+
+
   
   
-  export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings}
+  export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings, staffDb}
 
 
   
