@@ -5,7 +5,7 @@
     transform: translate(-50%, -50%);
     background-color: rgb(3, 31, 31);
     width: 400px;
-    padding: 0 20px;
+    padding: 0 45px;
     transition: transform 0.8s, top 0.4s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     visibility:hidden;
@@ -52,63 +52,77 @@
     
 
 }
+.popup> div:first-of-type select{
+    width: 100%;
+}
 .popup> div:first-of-type > select{
     padding: 5px;
 
 }
-.popup > div:nth-of-type(2){
+.popup > div:nth-of-type(2) input{
+    padding: 5px;
+    width: 100%;
+
+   
+}
+.popup > div:nth-of-type(2) label{
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    place-content: center;
+}
+.popup > div:nth-of-type(3){
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap:10px ;
     text-align: center;
-    padding-bottom:20px ;
+    padding:20px 0 ;
 
    
 }
 
 
-.popup > div:nth-of-type(2)> div > p{
+.popup > div:nth-of-type(3)> div > p{
     background-color: antiquewhite;
     text-align: center;
     font-size: 0.9rem;
     font-family: sans-serif;
     padding: 8px;
 }
-.popup > div:nth-of-type(2) >div > p.clicked{
+.popup > div:nth-of-type(3) >div > p.clicked{
     background-color: darkolivegreen;
 }
 
-.popup > div:nth-of-type(3){
+.popup > div:nth-of-type(4){
     padding-bottom:20px ;
     display: grid;
     grid-template-columns: 1fr;
 
    
 }
-.popup > div:nth-of-type(3)  label{
+.popup > div:nth-of-type(4)  label{
     color: antiquewhite;
     font-family: serif;
     font-size: 1.5rem;
 }
 
-.popup > div:nth-of-type(3) input{
+.popup > div:nth-of-type(4) input{
     width: 100%;
     height: 100%;
     padding: 5px;
     outline: none;
 }
-.popup > div:nth-of-type(4) p {
+.popup > div:nth-of-type(5) p {
     font-size: 2rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
     color:#fff;
 }
 
-.popup > div:nth-of-type(5) {
+.popup > div:nth-of-type(6) {
     display: grid;
     padding-bottom: 10px;
 }
-.popup > div:nth-of-type(5) button{
+.popup > div:nth-of-type(6) button{
     padding: 5px;
     outline: none;
     text-align: center;

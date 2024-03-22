@@ -47,4 +47,6 @@ model Bookings {
   user         User?    @relation(fields: [userId], references: [id])
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  visitingDate String
+  referenceNo  String
 }

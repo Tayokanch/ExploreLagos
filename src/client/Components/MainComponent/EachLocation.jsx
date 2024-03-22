@@ -23,7 +23,6 @@ function EachLocation() {
   useEffect(() => {
     if (selectedLocation) {
       setImageUrls(getImagePath(selectedLocation.id));
-      console.log(selectedLocation);
     }
   }, [selectedLocation]);
 
@@ -36,12 +35,10 @@ function EachLocation() {
   const handleClick = (index) => {
     const slider = selectedLocation ? `../${imageUrls[index]}` : null;
     setSliderData(slider);
-    console.log("this is the slider", slider);
   };
 
   const displayBooking = () => {
     setPopUp(true);
-    console.log("popUp is", popUp);
   };
   return (
     selectedLocation && (

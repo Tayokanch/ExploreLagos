@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./BookingForm.css";
 import { formContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { sendEmail } from "./NodeMailer.js";
+import BookingDate from "./BookingDate.jsx";
 
 const url = "http://localhost:3030";
 
@@ -23,7 +24,20 @@ function BookingForm({ popUp, setPopUp }) {
     bookingfor: "",
     locationName: "",
     price: null,
+    visitingDate: "",
+    referenceNo: "",
   });
+
+  function generateRandomString(length) {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
 
   const options = {
     method: "POST",
@@ -34,7 +48,7 @@ function BookingForm({ popUp, setPopUp }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("this, is the new booking", booking);
-
+    
     try {
       const response = await fetch(`${url}/bookings`, options);
       console.log("this is the response status", response.status);
@@ -43,21 +57,23 @@ function BookingForm({ popUp, setPopUp }) {
         console.error("HTTP error! Status:", response.status);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
       const data = await response.json();
+      await sendEmail()
     } catch (err) {
       console.error("An error occurred:", err);
     }
-     await sendEmail()
+    ; 
+    console.log('this is the new bookings', booking)
     setBooking({
       printName: "",
       locationId: "",
       locationName: "",
       userId: loggedInUser?.userId,
       price: null,
+      visitingDate: "",
+      referenceNo: generateRandomString(10),
     });
 
-    sendEmail()
     setSellingPrice(0);
     setLocationSelected(null);
     navigate("/");
@@ -67,6 +83,7 @@ function BookingForm({ popUp, setPopUp }) {
     const { value, name } = e.target;
     setBooking({
       ...booking,
+      referenceNo: generateRandomString(10),
       [name]: value,
     });
 
@@ -90,7 +107,6 @@ function BookingForm({ popUp, setPopUp }) {
       ...booking,
       locationId: Number(value),
       locationName: selectedLocation ? selectedLocation.name : "",
-      bookingfor: "",
     });
   };
 
@@ -152,6 +168,7 @@ function BookingForm({ popUp, setPopUp }) {
                 ))}
             </select>
           </div>
+          <BookingDate booking={booking} setBooking={setBooking} />
 
           <div>
             {bookingType.map((type, index) => (

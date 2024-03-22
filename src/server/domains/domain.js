@@ -1,5 +1,5 @@
 import prisma from '../utils/prisma.js'
-const createLocationDb = async(name,category, about, highlights, price)=> await prisma.location.create({
+const createLocationDb = async(name,category, about, highlights, price, )=> await prisma.location.create({
       data:{
           name,
           category,
@@ -19,7 +19,7 @@ const createLocationDb = async(name,category, about, highlights, price)=> await 
     }
   })
 
-  const createBookingDb = async (userId, locationId, printName, bookingfor, price, locationName) => {
+  const createBookingDb = async (userId, locationId, printName, bookingfor, price, locationName, visitingDate, referenceNo) => {
     try {
       return await prisma.bookings.create({
         data: {
@@ -28,7 +28,9 @@ const createLocationDb = async(name,category, about, highlights, price)=> await 
           printName,
           bookingfor,
           price,
-          locationName
+          locationName,
+          visitingDate,
+          referenceNo
         }
       });
     } catch (error) {

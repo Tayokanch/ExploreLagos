@@ -49,7 +49,6 @@ function Navbar() {
   useEffect(() => {
     if (foundUserId) {
       getBookings();
-      console.log("this is bookings", numOfBookings);
     }
   }, [foundUserId]);
 

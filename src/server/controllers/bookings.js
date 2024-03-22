@@ -2,7 +2,7 @@ import prisma from '../utils/prisma.js';
 import { createBookingDb } from '../domains/domain.js'
 import { getUserBookings } from '../domains/domain.js';
 const createBookings = async (req, res) => {
-    const { userId, locationId, printName, bookingfor, price, locationName } = req.body;
+    const { userId, locationId, printName, bookingfor, price, locationName, visitingDate, referenceNo} = req.body;
   
     if (!userId || !locationId || !price) {
       console.log(req.body);
@@ -10,7 +10,7 @@ const createBookings = async (req, res) => {
     }
   
     try {
-      const newbooking = await createBookingDb(userId, locationId, printName, bookingfor, price, locationName);
+      const newbooking = await createBookingDb(userId, locationId, printName, bookingfor, price, locationName, visitingDate, referenceNo);
       console.log('this is the new booking', newbooking)
       return res.status(201).json({ bookings: newbooking });
     } catch (e) {
