@@ -24,7 +24,7 @@ const createLocationDb = async(name,category, about, highlights, price, )=> awai
       return await prisma.bookings.create({
         data: {
           user: { connect: { id: userId } },
-          locationId,
+          location: { connect: { id: locationId } },
           printName,
           bookingfor,
           price,

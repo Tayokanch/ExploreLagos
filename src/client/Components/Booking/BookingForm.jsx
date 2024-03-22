@@ -18,6 +18,7 @@ function BookingForm({ popUp, setPopUp }) {
   const bookingType = ["Adult", "Children", "Teenager"];
   const [booking, setBooking] = useState({
     user: { connect: { id: loggedInUser?.userId } },
+    location: { connect: { id: null } },
     locationId: null,
     userId: loggedInUser?.userId,
     printName: "",
@@ -29,8 +30,7 @@ function BookingForm({ popUp, setPopUp }) {
   });
 
   function generateRandomString(length) {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let result = "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * characters.length);
@@ -48,7 +48,7 @@ function BookingForm({ popUp, setPopUp }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("this, is the new booking", booking);
-    
+
     try {
       const response = await fetch(`${url}/bookings`, options);
       console.log("this is the response status", response.status);
@@ -58,15 +58,14 @@ function BookingForm({ popUp, setPopUp }) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      await sendEmail()
+      //await sendEmail();
     } catch (err) {
       console.error("An error occurred:", err);
     }
-    ; 
-    console.log('this is the new bookings', booking)
+    console.log("this is the new bookings", booking);
     setBooking({
       printName: "",
-      locationId: "",
+      locationId: null,
       locationName: "",
       userId: loggedInUser?.userId,
       price: null,
@@ -105,6 +104,7 @@ function BookingForm({ popUp, setPopUp }) {
 
     setBooking({
       ...booking,
+      location: { connect: { id: Number(value) } },
       locationId: Number(value),
       locationName: selectedLocation ? selectedLocation.name : "",
     });

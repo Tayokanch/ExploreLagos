@@ -22,9 +22,9 @@ function UserBookings() {
     //console.log("visiting date", visitingDate);
 
     if (visitingDate <= currentDate) {
-      return "Valid";
+      return "VALID";
     } else {
-      return "Expired";
+      return "EXPIRED";
     }
   };
 
@@ -39,7 +39,6 @@ function UserBookings() {
 
     return formattedDate;
   };
-
 
   return (
     <section className={UserBookingCss.container}>
@@ -65,15 +64,28 @@ function UserBookings() {
             }
             <div>
               <h2>{booking.locationName}</h2>
-              <div className={UserBookingCss.ticket_circle}>
-                <p>Explore Ticket</p>
-                <p>{formDate(booking)}</p>
+              <div className={UserBookingCss.ticket_circle_container}>
+                <div className={UserBookingCss.ticket_circle}>
+                  <p> Ticket</p>
+                  <p>{formDate(booking)}</p>
+                  <p>{"Open from 10:00 am"}</p>
+                </div>
+                <div className={UserBookingCss.valid_box}>
+                  <p>
+                    <span>NAME:</span>
+                    {booking.printName.toUpperCase()}
+                  </p>
+                  <p>
+                    <span>STATUS:</span>
+                    {checkStatus(new Date(booking.visitingDate))}
+                  </p>
+                  <p className={UserBookingCss.reference}>
+                    {" "}
+                    REF: {booking.referenceNo}
+                  </p>
+                </div>
               </div>
-              <p>{booking.printName}</p>
-
-              <p>Status: {checkStatus(new Date(booking.visitingDate))}</p>
             </div>
-            <div></div>
           </div>
         ))}
       </div>

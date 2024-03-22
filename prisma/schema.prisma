@@ -15,14 +15,16 @@ datasource db {
 }
 
 model Location {
-  id         Int      @id @default(autoincrement())
-  name       String   @unique
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
   about      String
   price      Int
   category   String
   highlights Json
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  bookings   Bookings[]
+  staffs     Staff[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 }
 
 model User {
@@ -37,16 +39,27 @@ model User {
 }
 
 model Bookings {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  locationId   Int
+  id Int @id @default(autoincrement())
   locationName String
   printName    String
   bookingfor   String
   price        Int
-  user         User?    @relation(fields: [userId], references: [id])
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  userId       Int
+  user         User?     @relation(fields: [userId], references: [id])
+  locationId   Int
+  location     Location? @relation(fields: [locationId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
   visitingDate String
   referenceNo  String
+}
+
+model Staff {
+  id         Int       @id @default(autoincrement())
+  firstname  Int
+  lastname   Int
+  username   String
+  role       String
+  locationId Int
+  location   Location? @relation(fields: [locationId], references: [id])
 }
