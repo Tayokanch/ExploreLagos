@@ -12,6 +12,7 @@ import EachLocation from "./Components/MainComponent/EachLocation.jsx";
 import { createContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import UserBookings from "./Components/Booking/UserBookings.jsx";
+import ExpectedVisitors from "./Components/Team/ExpectedVisitors.jsx";
 import "./App.css";
 
 export const initialForm = {
@@ -28,7 +29,11 @@ function App() {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [bookings, setBookings] = useState(0);
   const [numOfBookings, setNumOfBookings] = useState(0);
+  const [toggleEye, setToggleEye] = useState(true);
 
+  const toggle = () => {
+    setToggleEye(!toggleEye);
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -52,6 +57,8 @@ function App() {
         setBookings,
         numOfBookings,
         setNumOfBookings,
+        toggleEye,
+        toggle,
       }}
     >
       <Routes>
@@ -61,6 +68,7 @@ function App() {
         <Route path="/TeamLogin/*" element={<TeamLogin />}></Route>
         <Route path="/location/:name" element={<EachLocation />} />
         <Route path="booking/:userId" element={<UserBookings />} />
+        <Route path="/staff/:locationId" element={<ExpectedVisitors />} />
       </Routes>
     </formContext.Provider>
   );

@@ -47,48 +47,54 @@ function UserBookings() {
           {" "}
           <FontAwesomeIcon icon={faHome} />
         </div>
-        <div className={UserBookingCss.user_initial}>
-          <p>TY</p>
-        </div>
         <BookingNav />
         <LogOut />{" "}
       </div>
-      <div className={UserBookingCss.main}>
-        {numOfBookings?.map((booking) => (
-          <div className={UserBookingCss.tickets}>
-            {
-              <img
-                src={`../${getImagePath(booking.locationId)[0]}`}
-                alt={booking.locationId}
-              />
-            }
-            <div>
-              <h2>{booking.locationName}</h2>
-              <div className={UserBookingCss.ticket_circle_container}>
-                <div className={UserBookingCss.ticket_circle}>
-                  <p> Ticket</p>
-                  <p>{formDate(booking)}</p>
-                  <p>{"Open from 10:00 am"}</p>
-                </div>
-                <div className={UserBookingCss.valid_box}>
-                  <p>
-                    <span>NAME:</span>
-                    {booking.printName.toUpperCase()}
-                  </p>
-                  <p>
-                    <span>STATUS:</span>
-                    {checkStatus(new Date(booking.visitingDate))}
-                  </p>
-                  <p className={UserBookingCss.reference}>
-                    {" "}
-                    REF: {booking.referenceNo}
-                  </p>
+      {numOfBookings?.length === 0 ? (
+        <div className={UserBookingCss.no_tickets}>
+          <div>
+            <span>You have Zero Bookings.</span>
+            <p>Start exploring our locations by making your booking today!</p>
+          </div>
+        </div>
+      ) : (
+        <div className={UserBookingCss.main}>
+          {numOfBookings?.map((booking) => (
+            <div className={UserBookingCss.tickets}>
+              {
+                <img
+                  src={`../${getImagePath(booking.locationId)[0]}`}
+                  alt={booking.locationId}
+                />
+              }
+              <div>
+                <h2>{booking.locationName}</h2>
+                <div className={UserBookingCss.ticket_circle_container}>
+                  <div className={UserBookingCss.ticket_circle}>
+                    <p> Ticket</p>
+                    <p>{formDate(booking)}</p>
+                    <p>{"Open from 10:00 am"}</p>
+                  </div>
+                  <div className={UserBookingCss.valid_box}>
+                    <p>
+                      <span>NAME:</span>
+                      {booking.printName.toUpperCase()}
+                    </p>
+                    <p>
+                      <span>STATUS:</span>
+                      {checkStatus(new Date(booking.visitingDate))}
+                    </p>
+                    <p className={UserBookingCss.reference}>
+                      {" "}
+                      REF: {booking.referenceNo}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

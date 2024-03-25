@@ -7,13 +7,13 @@ import staff4 from "../../../../assets/team/staff2.jpeg";
 import staff5 from "../../../../assets/team/staff4.jpeg";
 import staff6 from "../../../../assets/team/staff6.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Logo from "../HeaderComponent/Logo";
-import TeamHeader from "./TeamHeader";
 import {
-  faInstagram,
   faLinkedin,
   faTwitter,
+  faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import Logo from "../HeaderComponent/Logo";
+import TeamHeader from "./TeamHeader";
 
 function Team() {
   return (

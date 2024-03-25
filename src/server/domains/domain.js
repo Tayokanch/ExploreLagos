@@ -52,6 +52,20 @@ const createLocationDb = async(name,category, about, highlights, price, )=> awai
     }
 };
 
+const getBookingsByLocationIdDb = async(locationId)=>{
+    try{
+      const result = await prisma.bookings.findMany({
+        where:{
+          locationId: locationId
+        }
+      })
+      return result
+    }  catch(err){
+      console.error("Error fetching user bookings:", err)
+    }
+
+}
+
 
 const staffDb = async (firstname, lastname, username,email, password, role, locationId) => {
   try {
@@ -76,7 +90,7 @@ const staffDb = async (firstname, lastname, username,email, password, role, loca
 
   
   
-export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings, staffDb}
+export  { createLocationDb, createTouristDb, createBookingDb, getUserBookings, staffDb, getBookingsByLocationIdDb}
 
 
   

@@ -21,11 +21,24 @@
     display: block;
 }
 
+.input_container {
+    position: relative;
+}
+
+.password_eye {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 5px;
+}
+
 .form input{
     width: 100%;
     outline: none;
-    padding: 3px;
+    padding: 5px;
 }
+
 
 .form > div:last-of-type{
     display: grid;

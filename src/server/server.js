@@ -21,5 +21,4 @@ app.use('/bookings', bookingsRouter)
 app.use('/sendemail',sendEmailROuter)
 app.use('/staff', staffRouter)
 
-
 export { app };

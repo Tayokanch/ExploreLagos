@@ -51,7 +51,8 @@ const loginStaff = async(req, res)=>{
         const generatedToken = createToken({ 
            firstname: foundStaff.firstname,
             lastname: foundStaff.lastname,
-            username
+            username,
+            locationId :foundStaff.locationId
         }, secret);
 
         return res.status(201).json({token: generatedToken})

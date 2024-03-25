@@ -1,6 +1,7 @@
 import prisma from '../utils/prisma.js';
 import { createBookingDb } from '../domains/domain.js'
 import { getUserBookings } from '../domains/domain.js';
+import { getBookingsByLocationIdDb } from '../domains/domain.js';
 const createBookings = async (req, res) => {
     const { userId, locationId, printName, bookingfor, price, locationName, visitingDate, referenceNo} = req.body;
   
@@ -33,6 +34,18 @@ const getBookings = async(req, res)=>{
 }
 
 
+const getBookingsByLocationId = async (req, res) => {
+  const locationId = Number(req.params.locationId);
+  try {
+    const bookingWithLocationId = await getBookingsByLocationIdDb(locationId);
+    return res.status(200).json({ bookings: bookingWithLocationId });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
+
+
   
 
-export  {createBookings, getBookings}
+export  {createBookings, getBookings, getBookingsByLocationId}

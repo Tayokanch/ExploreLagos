@@ -10,8 +10,8 @@
 .container > div:first-of-type{
     background-color: rgb(32, 17, 17);
     display: grid;
-    grid-template-columns: 70px 70px 200px 200px ;
-    grid-auto-rows: 70px;
+    grid-template-columns: repeat(1fr) ;
+    grid-auto-flow: column;
     justify-content: space-between;
     padding: 10px;
  
@@ -57,8 +57,7 @@
 }
 
 .container > div:first-of-type >li:nth-of-type(2){
-    background-color:darkslateblue;
-    background-color: aliceblue;
+
     display: grid;
     place-items: center;
     font-family: "Hind", sans-serif;
@@ -67,15 +66,36 @@
 
 
 .main{
-    background-color: #5f9ea0;  
- 
+    background-color:#b8c8d5;
  
  }
 
+ .no_tickets{
+    background-color:#b8c8d5;
+    display: grid;   
+    place-items: center; 
+}
 
+.no_tickets > div{
+    max-width: 1000px;
 
-.main> .tickets{
-  
+}
+.no_tickets > div {
+    font-size: 3rem;
+    text-align: center;
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+      
+}
+.no_tickets > div span{
+    color:rgb(159, 27, 27);
+}
+.no_tickets > div p{
+    color:#124c4e;
+}
+
+.main .tickets{
     background-color:#2d2323b7;
     max-width: 800px;
     margin: 0 auto;

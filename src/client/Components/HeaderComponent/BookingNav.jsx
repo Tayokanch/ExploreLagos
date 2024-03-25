@@ -17,7 +17,7 @@ function BookingNav() {
     <>
       {
         <li className={BookingCss.bookings} onClick={handleNavigate}>
-          Bookings
+          My Bookings
           <div className={BookingCss.tickets}>
             <p>{numOfBookings && numOfBookings.length}</p>
           </div>

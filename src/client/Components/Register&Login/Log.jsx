@@ -4,6 +4,10 @@ import { formContext } from "../../App";
 import { initialForm } from "../../App";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+
 const url = "http://localhost:3030";
 
 function Log() {
@@ -13,6 +17,8 @@ function Log() {
     loggedInUser,
     setLoggedInUser,
     selectedLocation,
+    toggle,
+    toggleEye,
   } = useContext(formContext);
   const navigate = useNavigate();
 
@@ -83,13 +89,20 @@ function Log() {
       </div>
       <div>
         <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formInputs.password}
-          required
-          onChange={handleChange}
-        />
+        <div className="input_container">
+          <input
+            type={toggleEye ? "password" : "text"}
+            name="password"
+            value={formInputs.password}
+            required
+            onChange={handleChange}
+          />
+          <FontAwesomeIcon
+            icon={toggleEye ? faEye : faEyeSlash}
+            className="password_eye"
+            onClick={toggle}
+          />
+        </div>
       </div>
       <div>
         <p className="forget_password">Forget Password?</p>
