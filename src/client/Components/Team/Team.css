@@ -6,6 +6,13 @@
  
 }
 
+.team_container .dasboard_header{
+    display: grid;
+    background-color: rgb(5, 61, 110);
+    grid-auto-flow: column;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
 .staff_header{
     background-color: #fff;
     margin-bottom: 10px;

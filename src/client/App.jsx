@@ -12,7 +12,7 @@ import EachLocation from "./Components/MainComponent/EachLocation.jsx";
 import { createContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import UserBookings from "./Components/Booking/UserBookings.jsx";
-import ExpectedVisitors from "./Components/Team/ExpectedVisitors.jsx";
+import ExpectedVisitors from "./Components/Team/Dashboard.jsx";
 import "./App.css";
 
 export const initialForm = {
@@ -30,6 +30,7 @@ function App() {
   const [bookings, setBookings] = useState(0);
   const [numOfBookings, setNumOfBookings] = useState(0);
   const [toggleEye, setToggleEye] = useState(true);
+  const [staffInfo, setStaffInfo] = useState(null);
 
   const toggle = () => {
     setToggleEye(!toggleEye);
@@ -59,6 +60,8 @@ function App() {
         setNumOfBookings,
         toggleEye,
         toggle,
+        staffInfo,
+        setStaffInfo,
       }}
     >
       <Routes>

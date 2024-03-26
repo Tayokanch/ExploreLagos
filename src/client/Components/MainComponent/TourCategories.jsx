@@ -10,7 +10,6 @@ function TourCategories({ setLocations, locations }) {
     if (locations) {
       setOriginalLocations(locations);
     }
-    console.log("this is the original Locations", originalLocations);
   }, []);
 
   useEffect(() => {
