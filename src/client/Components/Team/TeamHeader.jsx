@@ -5,16 +5,11 @@ import NavCss from "../HeaderComponent/Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import "./TeamHeader.css";
-import Login from "./LoginButton";
+import LoginAndLogout from "./LoginAndLogout";
 
 function TeamHeader({ staffInfo, setStaffInfo }) {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    sessionStorage.clear();
-    setStaffInfo([]);
-    navigate("/TeamLogin/*");
-  };
 
   useEffect(() => {
     console.log("this is staff infomation in Team header", staffInfo);
@@ -23,7 +18,7 @@ function TeamHeader({ staffInfo, setStaffInfo }) {
   return (
     <div className="dasboard_header">
       <div className>{staffInfo ? <h2> Visitors</h2> : <h2> Our Team</h2>}</div>
-      {staffInfo ? <LogOut onClick={() => handleLogout()} /> : <Login />}
+      <LoginAndLogout />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { formContext } from "../../App.jsx";
 import prisma from "../../../server/utils/prisma.js";
 import LogOut from "./LogOut.jsx";
 import BookingNav from "./BookingNav.jsx";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const url = "http://localhost:3030";
 
@@ -45,7 +46,6 @@ function Navbar() {
     navigate(path);
   };
 
-
   useEffect(() => {
     if (foundUserId) {
       getBookings();
@@ -58,14 +58,18 @@ function Navbar() {
     navigate("/");
     setSelectedLocation("");
   };
-
+  const [NavBar, setNavBar] = useState(true);
+  const showNavBar = () => {
+    setNavBar(!NavBar);
+  };
   return (
     <div className={NavCSS.nav_Container}>
       <div className={NavCSS.logo}>
         <Logo />
       </div>
-      <div className={NavCSS.navbar}>
-        <li>History</li>
+      <div
+        className={`${NavCSS.navbar} ${NavBar ? NavCSS.responsiveNav : ""}`}
+      >
         <li>Contact</li>
         <li onClick={() => handleNavigation("/Team")}>Team</li>
 
@@ -78,7 +82,15 @@ function Navbar() {
         ) : (
           <li onClick={() => handleNavigation("/LoginOrSignUp")}>Sign up/in</li>
         )}
+
+        <button>
+          <FaTimes onClick={showNavBar}  className={NavCSS.close}/>
+        </button>
       </div>
+
+      <button>
+        <FaBars onClick={showNavBar} className={NavCSS.open} />
+      </button>
     </div>
   );
 }
