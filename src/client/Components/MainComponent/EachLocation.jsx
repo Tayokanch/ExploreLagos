@@ -55,11 +55,31 @@ function EachLocation() {
     });
   }
 
+
+  const showNextImage = () => {
+    setImageIndex((index) => {
+      if (index === imageUrls?.length - 1) {
+        return 0;
+      }
+      return index + 1;
+    });
+  };
+
+  const showPreviousImages = () => {
+    setImageIndex((index) => {
+      if (index === 0) {
+        return imageUrls?.length - 1;
+      }
+      return index - 1;
+    });
+  };
+
   return (
     selectedLocation && (
       <section className="slider_container">
         <div>
           <h1>{`Welcome to ${selectedLocation?.name}`}</h1>
+
           <div className="slider_header">
             <div>
               <img src={`../${imageUrls[imageIndex]}`} />
@@ -74,7 +94,7 @@ function EachLocation() {
             </div>
             <div>
               <p>{selectedLocation?.about}</p>
-              <h2>Activies</h2>
+              <h2>Activities</h2>
               {selectedLocation?.highlights.map((highlight, index) => (
                 <li key={index}>{highlight.topic}</li>
               ))}

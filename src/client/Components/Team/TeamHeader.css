@@ -1,0 +1,9 @@
+.dashboard> div:first-of-type{
+    padding: 5px;
+    border-bottom: 4px solid rgb(51, 6, 94);
+    background-color: cornflowerblue;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    grid-area: header;
+}

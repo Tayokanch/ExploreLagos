@@ -7,14 +7,12 @@ import { formContext } from "../../App";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import ExpectedVisitors from "./ExpectedVisitors";
+import ExpectedVisitors from "./Dashboard";
 import { useNavigate } from "react-router-dom";
 const url = "http://localhost:3030";
 
 function TeamLogin() {
-  const [staffInfo, setStaffInfo] = useState();
-
-  const { toggle, toggleEye } = useContext(formContext);
+  const { toggle, toggleEye, staffInfo, setStaffInfo } =useContext(formContext);
 
   const [staffLoginInput, setStaffLoginInput] = useState({
     username: "",
@@ -53,6 +51,7 @@ function TeamLogin() {
     try {
       const staffLogin = await fetch(`${url}/staff/login`, options);
       console.log(staffLoginInput);
+
       if (!staffLogin.ok) {
         throw new Error("Failed to login");
       }
@@ -60,7 +59,9 @@ function TeamLogin() {
       if (staffToken) {
         const decodedToken = jwtDecode(staffToken.token);
         sessionStorage.setItem("staffInfo", JSON.stringify(decodedToken));
+
         setStaffInfo(decodedToken);
+        
         const locationId = decodedToken.locationId;
         if (locationId) {
           navigate(`/staff/${locationId}`);
@@ -78,7 +79,11 @@ function TeamLogin() {
 
   return (
     <section className="team_login">
-      <TeamHeader className="team_header" staffInfo={staffInfo} />
+      <TeamHeader
+        className="team_header"
+        staffInfo={staffInfo}
+        setStaffInfo={setStaffInfo}
+      />
       <div className="team_form">
         <form className="form" onSubmit={handleSubmit}>
           <p className="heading">Login as a Member</p>

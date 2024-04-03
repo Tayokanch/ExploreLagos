@@ -19,10 +19,10 @@
     font-style: normal;
 
 }
-.navbar{
-    display: grid;
-    grid-auto-flow: column;
-    column-gap: 10px;
+.navbar li{
+    display: inline-block;
+    margin: 0 20px;
+
 }
 .navbar > li{
     list-style: none;

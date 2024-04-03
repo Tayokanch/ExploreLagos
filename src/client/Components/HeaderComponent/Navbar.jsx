@@ -63,7 +63,10 @@ function Navbar() {
     navigate("/");
     setSelectedLocation("");
   };
-
+  const [NavBar, setNavBar] = useState(true);
+  const showNavBar = () => {
+    setNavBar(!NavBar);
+  };
   return (
     <div className={NavCSS.nav_Container}>
       <div className={NavCSS.logo}>
