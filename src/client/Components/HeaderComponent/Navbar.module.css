@@ -1,6 +1,8 @@
 .nav_Container{
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
     background-color: #000000cf;
     position: fixed;
     width: 100%;
@@ -37,6 +39,20 @@
     cursor: pointer;
 }
 
+
+.nav_btn{
+    padding: 5px;
+    cursor: pointer;
+    background:transparent ;
+    border: none;
+    outline: none;
+    color: #f0f8ff;
+    visibility:hidden;
+    opacity: 0;
+    font-size: 2rem;
+}
+
+
 .bookings {
     position: relative; 
 }
@@ -54,4 +70,45 @@
     font-size: 0.7rem;
     border-radius: 50%;
     font-weight: bold;
+  }
+
+  @media only screen and (max-width: 1024px){
+     .nav_btn{
+        visibility: visible;
+        opacity: 1;
+     
+    }
+
+    .navbar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        transition: 1s;  
+        transform: translateY(-130vh);
+        background-color: darkcyan;
+
+    }
+
+    .responsive_nav {
+        transform:none;
+
+    }
+
+    .navbar >button{
+            position: absolute;
+            top: 2rem;
+            right: 1rem;
+    }
+
+
+ 
+
+
   }

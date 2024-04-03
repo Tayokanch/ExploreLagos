@@ -6,6 +6,7 @@ import { formContext } from "../../App.jsx";
 import prisma from "../../../server/utils/prisma.js";
 import LogOut from "./LogOut.jsx";
 import BookingNav from "./BookingNav.jsx";
+import { FaTimes, FaBars } from "react-icons/fa";
 
 const url = "http://localhost:3030";
 
@@ -13,6 +14,11 @@ function Navbar() {
   const userJSON = localStorage.getItem("decoded");
   const user = JSON.parse(userJSON);
   const navigate = useNavigate();
+  const [displayNav, setDisplayNav] = useState(false);
+
+  const toggleNavVisibility = () => {
+    setDisplayNav(!displayNav);
+  };
 
   const {
     loggedInUser,
@@ -45,7 +51,6 @@ function Navbar() {
     navigate(path);
   };
 
-
   useEffect(() => {
     if (foundUserId) {
       getBookings();
@@ -64,9 +69,12 @@ function Navbar() {
       <div className={NavCSS.logo}>
         <Logo />
       </div>
-      <div className={NavCSS.navbar}>
-        <li>History</li>
-        <li>Contact</li>
+      <div
+        className={`${NavCSS.navbar} ${
+          displayNav ? NavCSS.responsive_nav : ""
+        }`}
+      >
+        <li>About</li>
         <li onClick={() => handleNavigation("/Team")}>Team</li>
 
         {loggedInUser ? (
@@ -78,7 +86,24 @@ function Navbar() {
         ) : (
           <li onClick={() => handleNavigation("/LoginOrSignUp")}>Sign up/in</li>
         )}
+
+        <button
+          onClick={toggleNavVisibility}
+          className={`${NavCSS.nav_btn } ${
+            displayNav ? NavCSS.responsive_nav : ""
+          }`}
+        >
+          {<FaTimes />}
+        </button>
       </div>
+      <button
+        onClick={toggleNavVisibility}
+        className={`${NavCSS.nav_btn} ${
+          displayNav ? NavCSS.responsive_nav : ""
+        }`}
+      >
+        {<FaBars />}
+      </button>
     </div>
   );
 }

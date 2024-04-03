@@ -13,6 +13,7 @@ function EachLocation() {
   const location = useLocation();
   const [popUp, setPopUp] = useState(false);
   const [cancelBookingForm, setCancelBookingForm] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
 
   useEffect(() => {
     if (location.state && location.state.result) {
@@ -32,14 +33,28 @@ function EachLocation() {
     }
   }, [imageUrls]);
 
-  const handleClick = (index) => {
-    const slider = selectedLocation ? `../${imageUrls[index]}` : null;
-    setSliderData(slider);
-  };
-
   const displayBooking = () => {
     setPopUp(true);
   };
+
+  function showNextImage() {
+    setImageIndex((index) => {
+      if (index === imageUrls?.length - 1) {
+        return 0;
+      }
+      return index + 1;
+    });
+  }
+
+  function showpreviousImage() {
+    setImageIndex((index) => {
+      if (index === 0) {
+        return imageUrls?.length - 1;
+      }
+      return index - 1;
+    });
+  }
+
   return (
     selectedLocation && (
       <section className="slider_container">
@@ -47,7 +62,15 @@ function EachLocation() {
           <h1>{`Welcome to ${selectedLocation?.name}`}</h1>
           <div className="slider_header">
             <div>
-              <img src={`../${sliderData}`} />
+              <img src={`../${imageUrls[imageIndex]}`} />
+              <div>
+                <p className="left" onClick={showpreviousImage}>
+                  {"<"}
+                </p>
+                <p className="right" onClick={showpreviousImage}>
+                  {">"}
+                </p>
+              </div>
             </div>
             <div>
               <p>{selectedLocation?.about}</p>
