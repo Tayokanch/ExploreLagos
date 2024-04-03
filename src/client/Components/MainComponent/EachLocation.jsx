@@ -13,6 +13,7 @@ function EachLocation() {
   const location = useLocation();
   const [popUp, setPopUp] = useState(false);
   const [cancelBookingForm, setCancelBookingForm] = useState(false);
+  const [imageIndex, setImageIndex]= useState(0)
 
   useEffect(() => {
     if (location.state && location.state.result) {
