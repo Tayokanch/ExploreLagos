@@ -54,7 +54,7 @@ function Locations({ setLocations, locations }) {
 
             {getImagePath(location.id)[0] && (
               <img
-                src={`../${getImagePath(location?.id)[0]}`}
+                src={`http://localhost:5173/${getImagePath(location?.id)[0]}`}
                 alt={`Location ${location?.id} Image 0`}
               />
             )}
