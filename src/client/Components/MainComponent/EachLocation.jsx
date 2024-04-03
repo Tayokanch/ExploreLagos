@@ -13,7 +13,6 @@ function EachLocation() {
   const location = useLocation();
   const [popUp, setPopUp] = useState(false);
   const [cancelBookingForm, setCancelBookingForm] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
 
   useEffect(() => {
     if (location.state && location.state.result) {
@@ -37,14 +36,7 @@ function EachLocation() {
     setPopUp(true);
   };
 
-  function showNextImage() {
-    setImageIndex((index) => {
-      if (index === imageUrls?.length - 1) {
-        return 0;
-      }
-      return index + 1;
-    });
-  }
+
 
   function showpreviousImage() {
     setImageIndex((index) => {
@@ -65,14 +57,7 @@ function EachLocation() {
     });
   };
 
-  const showPreviousImages = () => {
-    setImageIndex((index) => {
-      if (index === 0) {
-        return imageUrls?.length - 1;
-      }
-      return index - 1;
-    });
-  };
+
 
   return (
     selectedLocation && (
