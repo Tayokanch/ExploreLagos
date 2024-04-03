@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import NavCSS from "./Navbar.module.css";
 import Logo from "./Logo.jsx";
 import { formContext } from "../../App.jsx";
-import prisma from "../../../server/utils/prisma.js";
 import LogOut from "./LogOut.jsx";
 import BookingNav from "./BookingNav.jsx";
 import { FaTimes, FaBars } from "react-icons/fa";
