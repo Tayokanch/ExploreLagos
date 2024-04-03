@@ -8,6 +8,8 @@ import { formContext } from "../../App";
 
 function EachLocation() {
   const { selectedLocation, setSelectedLocation } = useContext(formContext);
+  const [imageIndex, setImageIndex] = useState(0);
+
   const [imageUrls, setImageUrls] = useState([]);
   const [sliderData, setSliderData] = useState();
   const location = useLocation();
@@ -26,32 +28,49 @@ function EachLocation() {
     }
   }, [selectedLocation]);
 
-  useEffect(() => {
-    if (imageUrls.length > 0) {
-      setSliderData(`../${imageUrls[0]}`);
-    }
-  }, [imageUrls]);
-
-  const handleClick = (index) => {
-    const slider = selectedLocation ? `../${imageUrls[index]}` : null;
-    setSliderData(slider);
-  };
-
   const displayBooking = () => {
     setPopUp(true);
   };
+
+  const showNextImage = () => {
+    setImageIndex((index) => {
+      if (index === imageUrls?.length - 1) {
+        return 0;
+      }
+      return index + 1;
+    });
+  };
+
+  const showPreviousImages = () => {
+    setImageIndex((index) => {
+      if (index === 0) {
+        return imageUrls?.length - 1;
+      }
+      return index - 1;
+    });
+  };
+
   return (
     selectedLocation && (
       <section className="slider_container">
         <div>
           <h1>{`Welcome to ${selectedLocation?.name}`}</h1>
+
           <div className="slider_header">
-            <div>
-              <img src={`../${sliderData}`} />
+            <div className="image-container">
+              <img src={`../${imageUrls[imageIndex]}`} />
+              <div className="arrow_container">
+                <p onClick={showPreviousImages} className="left-arrow">
+                  {"<"}
+                </p>
+                <p onClick={showNextImage} className="right-arrow">
+                  {">"}
+                </p>
+              </div>
             </div>
             <div>
               <p>{selectedLocation?.about}</p>
-              <h2>Activies</h2>
+              <h2>Activities</h2>
               {selectedLocation?.highlights.map((highlight, index) => (
                 <li key={index}>{highlight.topic}</li>
               ))}
@@ -60,23 +79,6 @@ function EachLocation() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="image_slider">
-          {imageUrls.map((image, index) => (
-            <div
-              className={`thumbnail ${
-                sliderData === `../${image}` ? "clicked" : ""
-              }`}
-              key={index}
-            >
-              <img
-                src={`../${image}`}
-                alt={`${selectedLocation.name} Image: ${index}`}
-                height="400px"
-                onClick={() => handleClick(index)}
-              />
-            </div>
-          ))}
         </div>
         <Book
           popUp={popUp}
