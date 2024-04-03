@@ -61,23 +61,6 @@ function EachLocation() {
             </div>
           </div>
         </div>
-        <div className="image_slider">
-          {imageUrls.map((image, index) => (
-            <div
-              className={`thumbnail ${
-                sliderData === `../${image}` ? "clicked" : ""
-              }`}
-              key={index}
-            >
-              <img
-                src={`../${image}`}
-                alt={`${selectedLocation.name} Image: ${index}`}
-                height="400px"
-                onClick={() => handleClick(index)}
-              />
-            </div>
-          ))}
-        </div>
         <Book
           popUp={popUp}
           setPopUp={setPopUp}
