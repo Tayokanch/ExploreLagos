@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../HeaderComponent/Navbar";
-import bg1 from "../../../../assets/background/lagosnight.jpeg";
+import bg1 from "../../../../public/assets/background/lagosnight.jpeg";
 import RegisterCss from "./Register.module.css";
 import { Route, Routes } from "react-router-dom";
 import RegisterComponent from "../Register&Login/Reg.jsx";

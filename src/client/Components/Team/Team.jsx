@@ -1,11 +1,18 @@
 import React from "react";
 import "./Team.css";
-import staff1 from "../../../../assets/team/staff1.jpeg";
-import staff2 from "../../../../assets/team/staff5.jpeg";
-import staff3 from "../../../../assets/team/staff3.jpeg";
-import staff4 from "../../../../assets/team/staff2.jpeg";
-import staff5 from "../../../../assets/team/staff4.jpeg";
-import staff6 from "../../../../assets/team/staff6.jpeg";
+
+import staff1 from '../../../../public/assets/team/staff1.jpeg'
+import staff2 from '../../../../public/assets/team/staff2.jpeg'
+import staff3 from '../../../../public/assets/team/staff3.jpeg'
+import staff4 from '../../../../public/assets/team/staff4.jpeg'
+import staff5 from '../../../../public/assets/team/staff5.jpeg'
+import staff6 from '../../../../public/assets/team/staff6.jpeg'
+
+
+
+
+
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLinkedin,

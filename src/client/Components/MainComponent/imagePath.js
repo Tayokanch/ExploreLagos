@@ -2,7 +2,7 @@ const getImagePath = (locationId) => {
     switch (locationId) {
       case 13:
         return [
-          "assets/beaches/lcc/45cd1c729958c4dad775bb8471e92ebf.jpg",
+          "/assets/beaches/lcc/45cd1c729958c4dad775bb8471e92ebf.jpg",
           "assets/beaches/lcc/29403fea151297360391875ca4987742.jpg",
           "assets/beaches/lcc/eec3425d5ec179a1b9531d2ae6a149d6.jpg",
         ];
@@ -73,3 +73,4 @@ const getImagePath = (locationId) => {
 
 
   export default getImagePath
+
