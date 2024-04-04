@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-const url = "http://localhost:3030";
+const url = "https://explorelagos.onrender.com";
 
 function Log() {
   const {

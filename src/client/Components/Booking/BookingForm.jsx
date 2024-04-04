@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { sendEmail } from "./NodeMailer.js";
 import BookingDate from "./BookingDate.jsx";
 
-const url = "http://localhost:3030";
+const url = "https://explorelagos.onrender.com";
 
 function BookingForm({ popUp, setPopUp }) {
   const navigate = useNavigate();
