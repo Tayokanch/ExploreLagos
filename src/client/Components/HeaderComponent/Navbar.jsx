@@ -7,7 +7,7 @@ import LogOut from "./LogOut.jsx";
 import BookingNav from "./BookingNav.jsx";
 import { FaTimes, FaBars } from "react-icons/fa";
 
-const url = "http://localhost:3030";
+const url = "https://explorelagos.onrender.com";
 
 function Navbar() {
   const userJSON = localStorage.getItem("decoded");
