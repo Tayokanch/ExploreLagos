@@ -29,7 +29,7 @@ function EachLocation() {
 
   useEffect(() => {
     if (imageUrls.length > 0) {
-      setSliderData(`${imageUrls[0]}`);
+      setSliderData(`/${imageUrls[0]}`);
     }
   }, [imageUrls]);
 
