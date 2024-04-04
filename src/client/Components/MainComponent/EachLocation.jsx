@@ -29,7 +29,7 @@ function EachLocation() {
 
   useEffect(() => {
     if (imageUrls.length > 0) {
-      setSliderData(`../${imageUrls[0]}`);
+      setSliderData(`${imageUrls[0]}`);
     }
   }, [imageUrls]);
 
@@ -68,7 +68,7 @@ function EachLocation() {
 
           <div className="slider_header">
             <div>
-              <img src={`../${imageUrls[imageIndex]}`} />
+              <img src={`${imageUrls[imageIndex]}`} />
               <div>
                 <p className="left" onClick={showpreviousImage}>
                   {"<"}
