@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { formContext } from "../../App";
 import { initialForm } from "../../App";
-const url = "http://localhost:3030";
+const url = "https://explorelagos.onrender.com";
 
 function Reg() {
   const { formInputs, setFormInputs } = useContext(formContext);
