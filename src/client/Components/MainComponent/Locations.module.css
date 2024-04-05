@@ -1,13 +1,10 @@
 .image_container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-template-rows:  auto;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 10px;
 }
 
-
 .image_container > figure{
-    width: 100%;
     display: grid;
     grid-template-rows: 40px 100px 1fr;
     background-color: aliceblue;
@@ -43,12 +40,14 @@
 
 .image_container > figure > img{
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     padding-top: 10px;
 }
 
-.image_container > figure > img:hover {
+/* .image_container > figure > img:hover {
     transition: transform 0.3s ease; 
 
     transform: scale(1.08); 
 }
-
+ */
