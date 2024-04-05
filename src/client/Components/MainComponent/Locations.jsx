@@ -43,24 +43,30 @@ function Locations({ setLocations, locations }) {
 
   return (
     <>
-      <section className={LocationsCss.image_container}>
-        {locations?.map((location) => (
-          <figure key={location.id} onClick={() => handleLocation(location)}>
-            <figcaption>{location.name}</figcaption>
-            <p>
-              {location.about.substring(0, 200).concat("...")}
-              <span>read more</span>
-            </p>
+      {!locations ? (
+        <section>
+          <p>loading...</p>
+        </section>
+      ) : (
+        <section className={LocationsCss.image_container}>
+          {locations?.map((location) => (
+            <figure key={location.id} onClick={() => handleLocation(location)}>
+              <figcaption>{location.name}</figcaption>
+              <p>
+                {location.about.substring(0, 200).concat("...")}
+                <span>read more</span>
+              </p>
 
-            {getImagePath(location.id)[0] && (
-              <img
-                src={`/${getImagePath(location?.id)[0]}`}
-                alt={`Location ${location?.id} Image 0`}
-              />
-            )}
-          </figure>
-        ))}
-      </section>
+              {getImagePath(location.id)[0] && (
+                <img
+                  src={`/${getImagePath(location?.id)[0]}`}
+                  alt={`Location ${location?.id} Image 0`}
+                />
+              )}
+            </figure>
+          ))}
+        </section>
+      )}
     </>
   );
 }
