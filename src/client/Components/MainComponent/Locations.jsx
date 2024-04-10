@@ -5,6 +5,7 @@ import getImagePath from "./imagePath.js";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { formContext } from "../../App.jsx";
+
 function Locations({ setLocations, locations }) {
   const { loggedInUser, selectedLocation, setSelectedLocation } =
     useContext(formContext);

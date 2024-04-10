@@ -1,0 +1,156 @@
+
+.slide_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(95, 110, 123);
+}
+
+
+.reviews{
+    max-width: 1300px;
+    width: 100%;
+    padding: 40px 0;
+
+}
+
+.slide-content{
+    margin: 0 40px;
+
+}
+
+.card{
+    width: 350px;
+    border-radius: 25px;
+    background-color: #fff;
+}
+.image-content,
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+
+.image-content{
+    position: relative;
+    row-gap: 5px;
+    border-radius: 25px 25px 0 25px;
+    padding: 25px 0;
+}
+
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+    height: 200px; 
+    overflow: hidden; 
+}
+
+.overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: #4070F4;
+    border-radius: 25px 25px 0 25px;
+}
+
+
+.overlay::before, .overlay::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -30px;
+    height: 30px;
+    width: 30px;
+    background-color:  #4070F4;
+}
+
+.overlay::after{
+    border-radius: 0 25px 0 0;
+    background-color: #fff;
+}
+.card-image{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius:50% ;
+    background-color: #fff;
+    padding: 3px;
+}
+
+.card-image .card-img{
+    height: 100%;
+    width: 100%;
+    border-radius:50% ;
+    object-fit: cover;
+    border: 4px solid #4070f4;
+}
+
+
+.name{
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+
+}
+
+.description{
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+}
+.button{
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
+    background-color: #4070F4;
+    border-radius: 6px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+
+
+.slide-content {
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: center; 
+  }
+  
+  .card-wrapper {
+    flex: 0 0 auto; 
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .slide-content {
+      flex-wrap: wrap; 
+    }
+    .card {
+      width: 80%; 
+        margin: 0 auto;
+    }
+
+}
+
+
+@media screen and (max-width: 780px) {
+
+    .card {
+      width: 60%; 
+        margin: 0 auto;
+    }
+
+}
+  
+
+

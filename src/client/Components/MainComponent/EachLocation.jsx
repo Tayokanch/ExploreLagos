@@ -5,6 +5,7 @@ import getImagePath from "./imagePath";
 import Book from "../Booking/BookingForm";
 import { useContext } from "react";
 import { formContext } from "../../App";
+import Reviews from "./Reviews";
 
 function EachLocation() {
   const { selectedLocation, setSelectedLocation } = useContext(formContext);
@@ -13,7 +14,7 @@ function EachLocation() {
   const location = useLocation();
   const [popUp, setPopUp] = useState(false);
   const [cancelBookingForm, setCancelBookingForm] = useState(false);
-  const [imageIndex, setImageIndex]= useState(0)
+  const [imageIndex, setImageIndex] = useState(0);
 
   useEffect(() => {
     if (location.state && location.state.result) {
@@ -37,8 +38,6 @@ function EachLocation() {
     setPopUp(true);
   };
 
-
-
   function showpreviousImage() {
     setImageIndex((index) => {
       if (index === 0) {
@@ -47,7 +46,6 @@ function EachLocation() {
       return index - 1;
     });
   }
-
 
   const showNextImage = () => {
     setImageIndex((index) => {
@@ -58,45 +56,47 @@ function EachLocation() {
     });
   };
 
-
-
   return (
-    selectedLocation && (
-      <section className="slider_container">
-        <div>
-          <h1>{`Welcome to ${selectedLocation?.name}`}</h1>
+    selectedLocation && imageUrls.length > 0 && (
+      <>
+        <section className="slider_container">
+          <div>
+            <h1>{`Welcome to ${selectedLocation?.name}`}</h1>
 
-          <div className="slider_header">
-            <div>
-              <img src={`/${imageUrls[imageIndex]}`} />
+            <div className="slider_header">
               <div>
-                <p className="left" onClick={showpreviousImage}>
-                  {"<"}
-                </p>
-                <p className="right" onClick={showpreviousImage}>
-                  {">"}
-                </p>
+                <img src={`/${imageUrls[imageIndex]}`} />
+                <div>
+                  <p className="left" onClick={showpreviousImage}>
+                    {"<"}
+                  </p>
+                  <p className="right" onClick={showpreviousImage}>
+                    {">"}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div>
-              <p>{selectedLocation?.about}</p>
-              <h2>Activities</h2>
-              {selectedLocation?.highlights.map((highlight, index) => (
-                <li key={index}>{highlight.topic}</li>
-              ))}
               <div>
-                <p onClick={displayBooking}>Book a Ticket to Visit</p>
+                <p>{selectedLocation?.about}</p>
+                <h2>Activities</h2>
+                {selectedLocation?.highlights.map((highlight, index) => (
+                  <li key={index}>{highlight.topic}</li>
+                ))}
+                <div>
+                  <p onClick={displayBooking}>Book a Ticket to Visit</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <Book
-          popUp={popUp}
-          setPopUp={setPopUp}
-          cancelBookingForm={cancelBookingForm}
-          setCancelBookingForm={setCancelBookingForm}
-        />
-      </section>
+
+          <Book
+            popUp={popUp}
+            setPopUp={setPopUp}
+            cancelBookingForm={cancelBookingForm}
+            setCancelBookingForm={setCancelBookingForm}
+          />
+        </section>
+        <Reviews selectedLocation={selectedLocation} />
+      </>
     )
   );
 }

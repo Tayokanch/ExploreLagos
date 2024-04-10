@@ -13,7 +13,6 @@
 
 }
 .slider_container > div:first-of-type{
-    height: 500px;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;

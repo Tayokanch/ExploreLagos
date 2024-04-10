@@ -25,7 +25,7 @@ function App() {
   const [formInputs, setFormInputs] = useState(initialForm);
   const [locations, setLocations] = useState();
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [bookings, setBookings] = useState(0);
   const [numOfBookings, setNumOfBookings] = useState(0);
   const [toggleEye, setToggleEye] = useState(true);
