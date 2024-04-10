@@ -33,11 +33,11 @@ function Reviews({ selectedLocation }) {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Adjust the number of slides shown at once
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1024, // Adjust breakpoints as needed
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -53,12 +53,19 @@ function Reviews({ selectedLocation }) {
     ],
   };
 
+  const createdDate = (reviewDate) => {
+    const date = new Date(reviewDate);
+    const formattedDate = date.toLocaleDateString("en-GB");
+    return formattedDate;
+  };
   return (
     selectedLocation && (
       <section className="slide_container">
         <div className="review_header">
           <h3>{selectedLocation.name} Reviews</h3>
-          <p>Write a review</p>
+          <div>
+            <button>Write a review</button>
+          </div>
         </div>
 
         <div className="reviews">
@@ -71,14 +78,16 @@ function Reviews({ selectedLocation }) {
                     <div className="card swiper-slide">
                       <div className="image-content">
                         <span className="overlay"></span>
-                        <div className="card-image">
+                        <div className="card-initials">
                           <p>{`${review.user.firstname[0].toUpperCase()}${review.user.lastname[0].toUpperCase()}`}</p>
                         </div>
                       </div>
                       <div className="card-content">
                         <h2 className="name">{`${review.user.firstname} ${review.user.lastname}`}</h2>
                         <p className="description">{`${review?.content}`}</p>
-                        <button className="button">View More</button>
+                        <button className="button">
+                          {createdDate(review?.createdAt)}
+                        </button>
                       </div>
                     </div>
                   </div>
