@@ -58,7 +58,7 @@ function Reviews({ selectedLocation }) {
       console.log("selectedLocation is not available");
       return;
     }
-    const url = `https://famous-jellyfish-production.up.railway.app/${selectedLocation?.id}`;
+    const url = `https://famous-jellyfish-production.up.railway.app/reviews/${selectedLocation?.id}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -72,6 +72,7 @@ function Reviews({ selectedLocation }) {
   useEffect(() => {
     fetchReviews();
   }, [selectedLocation || reviews]);
+
 
   const settings = {
     dots: true,
