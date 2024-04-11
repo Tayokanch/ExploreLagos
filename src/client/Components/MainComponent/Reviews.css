@@ -1,61 +1,65 @@
-
-
-.review_header h3{
+.review_header h3 {
     font-size: 2rem;
     font-family: "Rowdies", sans-serif;
     padding-top: 5px;
-    color:rgb(109, 149, 183);
+    color: rgb(109, 149, 183);
     text-align: center;
 }
 
-.review_header  div{
-    display:  grid;
+.review_header div {
+    display: grid;
     justify-content: right;
     position: relative;
 }
 
-.review_header div > form {
+.review_header div > .form_container {
     background-color: #b1bbd7;
     display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     right: 10px;
     top: -40px;
     z-index: 1;
     border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    padding: 20px;
+}
 
+#showform {
+    flex-direction: column;
+    align-items: center;
+    visibility: visible;
+    opacity: 1;
+}
 
-  }
-  
-  .review_header div > form textarea,
-  .review_header div > form button {
+.review_header div > .form_container textarea {
+    border: none;
+    border-radius: 5px;
+    padding: 20px 0 0 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.review_header div > .form_container button {
+    background-color: #6284e2;
     border: none;
     border-radius: 5px;
     padding: 20px;
-  }
-
-  .review_header  div > form.showform{
-    display: block;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-}
-  
-.review_header div > form button {
-    background-color: #6284e2;
+    width: 100%;
+    max-width: 200px;
 }
 
-.review_header div > form button:hover{
+.review_header div > .form_container button:hover {
     background-color: #131e3d;
     color: #fff;
-
-
 }
-  
 
-.review_header div > p{
+
+.review_header div > p {
     font-size: 1.4rem;
     background-color: #1e90ff;
     padding: 10px;
@@ -63,54 +67,46 @@
     border-radius: 5px;
     border: 2px solid rgb(159, 150, 150);
     color: #fff;
-    
+    margin-top: 10px;
+}
 
-
-} 
-
-
-.slide_container{
+.slide_container {
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: rgb(39, 61, 81);
 }
 
-
-
-.reviews{
+.reviews {
     max-width: 1300px;
     width: 100%;
     padding: 40px 0;
-
 }
 
-.slide-content{
+.slide-content {
     margin: 0 40px;
-
 }
 
-.card{
+.card {
     width: 350px;
     border-radius: 25px;
     background-color: #fff;
 }
-.image-content,
-.card-content{
+
+.image-content, .card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px 14px;
 }
 
-
-.image-content{
+.image-content {
     position: relative;
     row-gap: 5px;
     border-radius: 25px 25px 0 25px;
     padding: 25px 0;
 }
-
 
 .card-content {
     display: grid;
@@ -121,7 +117,7 @@
     overflow: hidden; 
 }
 
-.overlay{
+.overlay {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -131,8 +127,7 @@
     border-radius: 25px 25px 0 25px;
 }
 
-
-.overlay::before, .overlay::after{
+.overlay::before, .overlay::after {
     content: '';
     position: absolute;
     right: 0;
@@ -142,10 +137,11 @@
     background-color:  #4070F4;
 }
 
-.overlay::after{
+.overlay::after {
     border-radius: 0 25px 0 0;
     background-color: #fff;
 }
+
 .card-initials {
     position: relative;
     height: 100px;
@@ -158,28 +154,24 @@
     align-items: center; 
 }
 
-.card-initials p{
+.card-initials p {
     font-size: 2rem;
     font-family: sans-serif;
 }
 
-
-
-
-
-.name{
+.name {
     font-size: 18px;
     font-weight: 500;
     color: #333;
-
 }
 
-.description{
+.description {
     font-size: 14px;
     color: #707070;
     text-align: center;
 }
-.button{
+
+.button {
     border: none;
     font-size: 16px;
     color: #fff;
@@ -191,48 +183,37 @@
     transition: all 0.3s ease;
 }
 
-
-
-
 .slide-content {
     margin: 0 auto; 
     display: flex; 
     justify-content: center; 
-  }
-  
-  .card-wrapper {
-    flex: 0 0 auto; 
-  }
-  
-  @media screen and (max-width: 1024px) {
-    .slide-content {
-      flex-wrap: wrap; 
-    }
-    .card {
-      width: 80%; 
-        margin: 0 auto;
-    }
-
 }
 
+.card-wrapper {
+    flex: 0 0 auto; 
+}
+
+@media screen and (max-width: 1024px) {
+    .slide-content {
+        flex-wrap: wrap; 
+    }
+    .card {
+        width: 80%; 
+        margin: 0 auto;
+    }
+}
 
 @media screen and (max-width: 780px) {
     .card {
-      width: 60%; 
-      margin: 0 auto;
+        width: 60%; 
+        margin: 0 auto;
     }
 
-    .review_header div > form {
+    .review_header div > .form_container {
         display: grid;
         position: absolute;
-        top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
         z-index: 1;
         background-color: cadetblue;
     }
 }
-
-  
-
-

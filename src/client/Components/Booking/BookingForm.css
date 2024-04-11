@@ -30,6 +30,10 @@
     font-family: 'roboto';
 }
 
+.cancel:hover{
+    color: rgb(11, 7, 33);
+}
+
 .booking_box {
     position: relative;
 }

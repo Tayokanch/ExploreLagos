@@ -4,6 +4,8 @@ import { formContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { sendEmail } from "./NodeMailer.js";
 import BookingDate from "./BookingDate.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const url = "https://explorelagos.onrender.com";
 
@@ -151,9 +153,18 @@ function BookingForm({ popUp, setPopUp }) {
     <div
       className={`booking_container ${popUp ? "active_booking_container" : ""}`}
     >
-      <p className="cancel" onClick={() => cancelForm()}>
-        x
-      </p>
+      <div
+        style={{
+          position: "absolute",
+          top: "-30px",
+          right: "-8px",
+          color: "red",
+        }}
+        className="cancel"
+        onClick={() => cancelForm()}
+      >
+        <FontAwesomeIcon icon={faCircleXmark} style={{ fontSize: "2rem" }} />
+      </div>
       <div className={`booking_box`}>
         <form className="popup" id="popup-box" onSubmit={handleSubmit}>
           <h2>Your Destination</h2>

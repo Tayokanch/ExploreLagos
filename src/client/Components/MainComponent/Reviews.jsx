@@ -1,13 +1,16 @@
 import React from "react";
+import { FaCircle, FaTimes } from "react-icons/fa";
+
 import "./Reviews.css";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { formContext } from "../../App";
 import { initialForm } from "../../App";
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Reviews({ selectedLocation }) {
   const [reviews, setReviews] = useState([]);
@@ -45,6 +48,10 @@ function Reviews({ selectedLocation }) {
     setFormInputs(initialForm);
     setDisplayReviewBox(false);
   };
+
+  useEffect(() => {
+    console.log(displayReviewBox);
+  }, [displayReviewBox]);
 
   const fetchReviews = async () => {
     if (!selectedLocation) {
@@ -102,24 +109,42 @@ function Reviews({ selectedLocation }) {
         <div className="review_header">
           <h3>{selectedLocation.name} Reviews</h3>
           <div>
-            <p onClick={() => setDisplayReviewBox(true)}>Write a review</p>
-            <form
-              onSubmit={postReviews}
-              className={displayReviewBox ? "showform" : ""}
+            <p onClick={() => setDisplayReviewBox(!displayReviewBox)}>
+              Write a review
+            </p>
+            <div
+              className="form_container"
+              id={`${displayReviewBox ? "showform" : ""}`}
             >
-              <div>
-                <textarea
-                  name="content"
-                  cols="50"
-                  rows="10"
-                  placeholder="Type Review"
-                  value={formInputs.content}
-                  onChange={handleChange}
-                  required
-                ></textarea>{" "}
-              </div>
-              <button>Submit</button>
-            </form>
+              <form onSubmit={postReviews} style={{ position: "relative" }}>
+                <div>
+                  <textarea
+                    name="content"
+                    cols="50"
+                    rows="10"
+                    placeholder="Type Review"
+                    value={formInputs.content}
+                    onChange={handleChange}
+                    required
+                  ></textarea>{" "}
+                </div>
+                <button>Submit</button>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-5px",
+                    right: "-8px",
+                    color: "red",
+                  }}
+                  onClick={() => setDisplayReviewBox(false)}
+                >
+                  <FontAwesomeIcon
+                    icon={faCircleXmark}
+                    style={{ fontSize: "2rem" }}
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
 
