@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Reviews({ selectedLocation }) {
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   const fetchReviews = async () => {
     console.log("this is console.log in line 8", selectedLocation.id);
@@ -20,14 +20,15 @@ function Reviews({ selectedLocation }) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    console.log("this is data", data);
+    console.log("this is data", data.reviews.reverse());
     setReviews(data);
     return data;
   };
 
   useEffect(() => {
     fetchReviews();
-  }, [selectedLocation]);
+  }, [selectedLocation || reviews]);
+
 
   const settings = {
     dots: true,
@@ -56,7 +57,7 @@ function Reviews({ selectedLocation }) {
   const createdDate = (reviewDate) => {
     const date = new Date(reviewDate);
     const formattedDate = date.toLocaleDateString("en-GB");
-    return formattedDate;
+     return formattedDate;
   };
   return (
     selectedLocation && (
@@ -72,7 +73,7 @@ function Reviews({ selectedLocation }) {
           <Slider {...settings}>
             {reviews &&
               reviews.reviews &&
-              reviews.reviews.map((review) => (
+              reviews.reviews.reverse().map((review) => (
                 <div className="slide-content">
                   <div className="card-wrapper">
                     <div className="card swiper-slide">

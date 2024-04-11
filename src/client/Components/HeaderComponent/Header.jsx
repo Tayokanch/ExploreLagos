@@ -1,7 +1,8 @@
 import React from "react";
 import HeaderCSS from "../HeaderComponent/Header.module.css";
-import bg1 from "../../../../public/assets/background/6f1aee17e7f12bcea7c7f1fa4f5cbf06.jpg";
-import bg2 from "../../../../public/assets/background/917f68b6c0a1ff2631af57895e4be53d.jpg";
+import bg1 from "/assets/background/6f1aee17e7f12bcea7c7f1fa4f5cbf06.jpg";
+import bg2 from "/assets/background/917f68b6c0a1ff2631af57895e4be53d.jpg";
+
 import Navbar from "./Navbar";
 import HeroPage from "./HeroPage";
 
