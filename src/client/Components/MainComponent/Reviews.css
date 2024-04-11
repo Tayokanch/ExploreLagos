@@ -71,7 +71,7 @@
 }
 
 .slide_container {
-    min-height: 300px;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
