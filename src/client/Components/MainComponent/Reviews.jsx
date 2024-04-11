@@ -58,7 +58,7 @@ function Reviews({ selectedLocation }) {
       console.log("selectedLocation is not available");
       return;
     }
-    const url = `http://localhost:3030/reviews/${selectedLocation?.id}`;
+    const url = `https://famous-jellyfish-production.up.railway.app/${selectedLocation?.id}`;
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
