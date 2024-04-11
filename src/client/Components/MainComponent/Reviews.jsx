@@ -38,7 +38,10 @@ function Reviews({ selectedLocation }) {
     console.log("this is formInputs", formInputs);
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3030/reviews`, options);
+      const response = await fetch(
+        `https://famous-jellyfish-production.up.railway.app/reviews`,
+        options
+      );
       const data = await response.json();
     } catch (err) {
       console.error("this is the error", err);
@@ -72,7 +75,6 @@ function Reviews({ selectedLocation }) {
   useEffect(() => {
     fetchReviews();
   }, [selectedLocation || reviews]);
-
 
   const settings = {
     dots: true,
