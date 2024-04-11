@@ -19,6 +19,9 @@ export const initialForm = {
   lastname: "",
   email: "",
   password: "",
+  content: "",
+  userId: "",
+  locationId: "",
 };
 const formContext = createContext();
 function App() {

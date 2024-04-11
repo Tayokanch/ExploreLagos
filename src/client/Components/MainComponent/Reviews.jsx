@@ -1,15 +1,52 @@
 import React from "react";
 import "./Reviews.css";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { formContext } from "../../App";
+import { initialForm } from "../../App";
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Reviews({ selectedLocation }) {
   const [reviews, setReviews] = useState([]);
+  const [displayReviewBox, setDisplayReviewBox] = useState(false);
+  const { setFormInputs, formInputs } = useContext(formContext);
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+
+    setFormInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+      locationId: selectedLocation?.id,
+      userId: 10,
+    }));
+  };
+
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formInputs),
+  };
+
+  const postReviews = async (e) => {
+    console.log("this is formInputs", formInputs);
+    e.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:3030/reviews`, options);
+      const data = await response.json();
+    } catch (err) {
+      console.error("this is the error", err);
+      setError(err.error);
+    }
+
+    setFormInputs(initialForm);
+    setDisplayReviewBox(false);
+  };
 
   const fetchReviews = async () => {
-    console.log("this is console.log in line 8", selectedLocation.id);
     if (!selectedLocation) {
       console.log("selectedLocation is not available");
       return;
@@ -28,7 +65,6 @@ function Reviews({ selectedLocation }) {
   useEffect(() => {
     fetchReviews();
   }, [selectedLocation || reviews]);
-
 
   const settings = {
     dots: true,
@@ -57,15 +93,33 @@ function Reviews({ selectedLocation }) {
   const createdDate = (reviewDate) => {
     const date = new Date(reviewDate);
     const formattedDate = date.toLocaleDateString("en-GB");
-     return formattedDate;
+    return formattedDate;
   };
+
   return (
     selectedLocation && (
       <section className="slide_container">
         <div className="review_header">
           <h3>{selectedLocation.name} Reviews</h3>
           <div>
-            <button>Write a review</button>
+            <p onClick={() => setDisplayReviewBox(true)}>Write a review</p>
+            <form
+              onSubmit={postReviews}
+              className={displayReviewBox ? "showform" : ""}
+            >
+              <div>
+                <textarea
+                  name="content"
+                  cols="50"
+                  rows="10"
+                  placeholder="Type Review"
+                  value={formInputs.content}
+                  onChange={handleChange}
+                  required
+                ></textarea>{" "}
+              </div>
+              <button>Submit</button>
+            </form>
           </div>
         </div>
 
@@ -74,7 +128,7 @@ function Reviews({ selectedLocation }) {
             {reviews &&
               reviews.reviews &&
               reviews.reviews.reverse().map((review) => (
-                <div className="slide-content">
+                <div className="slide-content" key={review.id}>
                   <div className="card-wrapper">
                     <div className="card swiper-slide">
                       <div className="image-content">

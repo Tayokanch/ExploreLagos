@@ -11,9 +11,51 @@
 .review_header  div{
     display:  grid;
     justify-content: right;
+    position: relative;
 }
 
-.review_header div button{
+.review_header div > form {
+    background-color: #b1bbd7;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: -40px;
+    z-index: 1;
+    border-radius: 5px;
+
+
+  }
+  
+  .review_header div > form textarea,
+  .review_header div > form button {
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .review_header  div > form.showform{
+    display: block;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+  
+.review_header div > form button {
+    background-color: #6284e2;
+}
+
+.review_header div > form button:hover{
+    background-color: #131e3d;
+    color: #fff;
+
+
+}
+  
+
+.review_header div > p{
     font-size: 1.4rem;
     background-color: #1e90ff;
     padding: 10px;
@@ -21,9 +63,10 @@
     border-radius: 5px;
     border: 2px solid rgb(159, 150, 150);
     color: #fff;
+    
 
 
-}
+} 
 
 
 .slide_container{
@@ -174,13 +217,22 @@
 
 
 @media screen and (max-width: 780px) {
-
     .card {
       width: 60%; 
-        margin: 0 auto;
+      margin: 0 auto;
     }
 
+    .review_header div > form {
+        display: grid;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        background-color: cadetblue;
+    }
 }
+
   
 
 
