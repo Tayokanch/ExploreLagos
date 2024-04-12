@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import   "./TourCategories.css";
+import "./TourCategories.css";
 import getImagePath from "./imagePath.js";
 
 function TourCategories({ setLocations, locations }) {
-  const [category, setCategory] = useState('All');
+  const [category, setCategory] = useState("All");
   const [originalLocations, setOriginalLocations] = useState([]);
 
   useEffect(() => {
@@ -32,8 +32,8 @@ function TourCategories({ setLocations, locations }) {
   };
 
   return (
-    <section className='category_container'>
-      <h3>Tour Categories</h3>
+    <section className="category_container">
+      <h3>Location Categories</h3>
       <ul>
         <li
           onClick={() => handleCategoryClick("All")}

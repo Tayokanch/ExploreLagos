@@ -5,10 +5,15 @@ import getImagePath from "./imagePath.js";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { formContext } from "../../App.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as ReactBootSrap from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 
 function Locations({ setLocations, locations }) {
   const { loggedInUser, selectedLocation, setSelectedLocation } =
     useContext(formContext);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchLocation();
@@ -27,6 +32,7 @@ function Locations({ setLocations, locations }) {
     }
     const data = await response.json();
     setLocations(data);
+    setLoading(true)
     return data;
   };
 
@@ -44,9 +50,18 @@ function Locations({ setLocations, locations }) {
 
   return (
     <>
-      {!locations ? (
+      {!loading ? (
         <section>
-          <p>loading...</p>
+          <Button variant="secondary" disabled>
+            <Spinner
+              as="span"
+              animation="grow"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            Locations Loading...
+          </Button>
         </section>
       ) : (
         <section className={LocationsCss.image_container}>
