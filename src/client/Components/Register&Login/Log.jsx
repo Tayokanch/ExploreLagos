@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Spinner from "react-bootstrap/Spinner";
 
 const url = "https://explorelagos.onrender.com";
 
@@ -23,6 +24,7 @@ function Log() {
   const navigate = useNavigate();
 
   const [loginResponse, setLoginResponse] = useState("");
+  const [loading, setLoading] = useState(false);
   const options = {
     method: "POST",
     headers: {
@@ -31,10 +33,10 @@ function Log() {
     },
     body: JSON.stringify(formInputs),
   };
-
   const touristLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true); 
+  
     try {
       const verifyLogin = await fetch(`${url}/user/login`, options);
       if (!verifyLogin.ok) {
@@ -45,12 +47,11 @@ function Log() {
       const loginToken = await verifyLogin.json();
       if (loginToken) {
         const decodeToken = jwtDecode(loginToken.data);
-
         setLoggedInUser(decodeToken);
-
+  
         localStorage.setItem("token", JSON.stringify(loginToken.data));
         localStorage.setItem("decoded", JSON.stringify(decodeToken));
-
+  
         if (loggedInUser && selectedLocation) {
           navigate(`location/${selectedLocation?.name}`);
         } else {
@@ -59,10 +60,12 @@ function Log() {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false); 
+      setFormInputs(initialForm); 
     }
-
-    setFormInputs(initialForm);
   };
+  
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -107,11 +110,16 @@ function Log() {
       <div>
         <p className="forget_password">Forget Password?</p>
       </div>
-      <div>
-        <button type="submit">Login</button>
-      </div>
-      {loginResponse !== "" && (
-        <p className="login_response">{loginResponse}</p>
+      {loading ? (
+        <div>
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      ) : (
+        <div>
+          <button type="submit">Login</button>
+        </div>
       )}
     </form>
   );
