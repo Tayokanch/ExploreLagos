@@ -1,3 +1,4 @@
+/* Review Header Styles */
 .review_header h3 {
     font-size: 2rem;
     font-family: "Rowdies", sans-serif;
@@ -7,8 +8,8 @@
 }
 
 .review_header div {
-    display: grid;
-    justify-content: right;
+    display: flex; /* Changed from grid to flex */
+    justify-content: space-between; /* Changed from right to space-between */
     position: relative;
 }
 
@@ -17,7 +18,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     position: absolute;
     right: 10px;
     top: -40px;
@@ -29,8 +29,6 @@
 }
 
 #showform {
-    flex-direction: column;
-    align-items: center;
     visibility: visible;
     opacity: 1;
 }
@@ -58,12 +56,10 @@
     color: #fff;
 }
 
-
 .review_header div > p {
     font-size: 1.4rem;
     background-color: #1e90ff;
     padding: 10px;
-    margin-right: 20px;
     border-radius: 5px;
     border: 2px solid rgb(159, 150, 150);
     color: #fff;
@@ -71,11 +67,12 @@
 }
 
 .slide_container {
-    min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; 
     background-color: rgb(39, 61, 81);
+    overflow: auto;
 }
 
 .reviews {
@@ -85,16 +82,27 @@
 }
 
 .slide-content {
-    margin: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
+.card-wrapper {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Card Styles */
 .card {
     width: 350px;
     border-radius: 25px;
     background-color: #fff;
+    margin: 0 20px; /* Added margin for spacing */
 }
 
-.image-content, .card-content {
+.image-content,
+.card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,8 +121,8 @@
     grid-template-columns: 1f 1f auto;
     padding: 10px 14px;
     place-items: center;
-    height: 200px; 
-    overflow: hidden; 
+    height: 200px;
+    overflow: hidden;
 }
 
 .overlay {
@@ -123,18 +131,19 @@
     width: 100%;
     left: 0;
     top: 0;
-    background-color: #4070F4;
+    background-color: #4070f4;
     border-radius: 25px 25px 0 25px;
 }
 
-.overlay::before, .overlay::after {
+.overlay::before,
+.overlay::after {
     content: '';
     position: absolute;
     right: 0;
     bottom: -30px;
     height: 30px;
     width: 30px;
-    background-color:  #4070F4;
+    background-color: #4070f4;
 }
 
 .overlay::after {
@@ -149,9 +158,9 @@
     border-radius: 50%;
     background-color: #fff;
     padding: 3px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-initials p {
@@ -183,29 +192,19 @@
     transition: all 0.3s ease;
 }
 
-.slide-content {
-    margin: 0 auto; 
-    display: flex; 
-    justify-content: center; 
-}
-
-.card-wrapper {
-    flex: 0 0 auto; 
-}
-
 @media screen and (max-width: 1024px) {
     .slide-content {
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
     }
     .card {
-        width: 80%; 
+        width: 80%;
         margin: 0 auto;
     }
 }
 
 @media screen and (max-width: 780px) {
     .card {
-        width: 60%; 
+        width: 60%;
         margin: 0 auto;
     }
 

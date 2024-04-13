@@ -15,10 +15,6 @@ function Locations({ setLocations, locations }) {
     useContext(formContext);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetchLocation();
-  }, []);
-
   const navigate = useNavigate();
   const handleNavigation = (path) => {
     navigate(path);
@@ -32,9 +28,13 @@ function Locations({ setLocations, locations }) {
     }
     const data = await response.json();
     setLocations(data);
-    setLoading(true)
+    setLoading(true);
     return data;
   };
+
+  useEffect(() => {
+    fetchLocation();
+  }, []);
 
   const handleLocation = (locationSelected) => {
     if (loggedInUser) {
