@@ -1,18 +1,18 @@
+
+
 .image_container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 10px;
-}
-
-.image_container > figure{
-    display: grid;
-    grid-template-rows: 40px 100px 1fr;
-    background-color: aliceblue;
+    display: flex;
+    flex-wrap: wrap;
     padding: 20px;
-  
+    justify-content: center;
+    column-gap: 20px;
+
 }
-
-
+.image_container > figure{
+    flex-basis: 450px;
+    padding: 20px;
+    box-shadow: 0 0 2px 3px rgb(184, 181, 181);
+}
 .image_container > figure figcaption{
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
@@ -45,9 +45,9 @@
     padding-top: 10px;
 }
 
-/* .image_container > figure > img:hover {
-    transition: transform 0.3s ease; 
+@media only screen and (max-width: 955px) {
+    .image_container > figure {
+        flex-basis: 800px;
+    }
+  }
 
-    transform: scale(1.08); 
-}
- */

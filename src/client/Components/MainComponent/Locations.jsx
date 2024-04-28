@@ -10,7 +10,7 @@ import * as ReactBootSrap from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
-function Locations({ setLocations, locations }) {
+function Locations({ setLocations, locations, category, setCategory }) {
   const { loggedInUser, selectedLocation, setSelectedLocation } =
     useContext(formContext);
   const [loading, setLoading] = useState(false);
@@ -21,16 +21,17 @@ function Locations({ setLocations, locations }) {
   };
 
   const fetchLocation = async () => {
-    const url = "https://explorelagos.onrender.com/location";
+    const url = "http://localhost:3030/location";
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
     setLocations(data);
+    setCategory(data)
     setLoading(true);
-    return data;
   };
+
 
   useEffect(() => {
     fetchLocation();
@@ -65,7 +66,7 @@ function Locations({ setLocations, locations }) {
         </section>
       ) : (
         <section className={LocationsCss.image_container}>
-          {locations?.map((location) => (
+          {category?.map((location) => (
             <figure key={location.id} onClick={() => handleLocation(location)}>
               <figcaption>{location.name}</figcaption>
               <p>

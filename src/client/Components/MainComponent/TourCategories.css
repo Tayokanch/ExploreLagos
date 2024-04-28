@@ -25,9 +25,14 @@
     list-style: none;
     padding: 10px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(1, 28, 1, 0.8); /* Adjusted shadow color */
+    border: 1.5px dashed rgba(1, 28, 1, 0.8);
 }
 
+.category_container > ul > li:hover {
+    background-color: rgba(1, 28, 1, 0.8);
+    color: #fff;
+
+}
 
 
 .category_container > ul > li.selected {

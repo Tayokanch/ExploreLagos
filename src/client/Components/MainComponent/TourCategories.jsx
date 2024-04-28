@@ -2,33 +2,29 @@ import React, { useState, useEffect } from "react";
 import "./TourCategories.css";
 import getImagePath from "./imagePath.js";
 
-function TourCategories({ setLocations, locations }) {
-  const [category, setCategory] = useState("All");
-  const [originalLocations, setOriginalLocations] = useState([]);
-
-  useEffect(() => {
-    if (locations) {
-      setOriginalLocations(locations);
-    }
-  }, []);
-
-  useEffect(() => {
-    getLocationByCategories();
-  }, [category]);
+function TourCategories({ setLocations, locations, category, setCategory }) {
+  const [mycategory, setMycategory] = useState([]);
 
   const getLocationByCategories = () => {
-    if (category === "All") {
-      setLocations(originalLocations);
+    if (mycategory === "All") {
+      setCategory(locations);
     } else {
       const result = locations?.filter(
-        (location) => location.category.toLowerCase() === category.toLowerCase()
+        (location) =>
+          location.category.toLowerCase() === mycategory.toLowerCase()
       );
-      setLocations(result);
+      setCategory(result);
     }
   };
 
+  useEffect(() => {
+    getLocationByCategories();
+  }, [mycategory]);
+
   const handleCategoryClick = (selectedCategory) => {
-    setCategory(selectedCategory);
+    if (locations) {
+      setMycategory(selectedCategory);
+    }
   };
 
   return (

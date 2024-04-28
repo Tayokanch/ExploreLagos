@@ -7,11 +7,22 @@ import { useContext } from "react";
 import { formContext } from "../../App";
 function Main() {
   const { locations, setLocations } = useContext(formContext);
+  const [category, setCategory] = useState("All");
 
   return (
     <main className={MainCSS.main} id="places">
-      <TourCategories setLocations={setLocations} locations={locations} />
-      <Locations setLocations={setLocations} locations={locations} />
+      <TourCategories
+        setLocations={setLocations}
+        locations={locations}
+        category={category}
+        setCategory={setCategory}
+      />
+      <Locations
+        setLocations={setLocations}
+        locations={locations}
+        category={category}
+        setCategory={setCategory}
+      />
     </main>
   );
 }
