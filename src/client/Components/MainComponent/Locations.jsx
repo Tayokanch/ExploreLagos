@@ -21,17 +21,16 @@ function Locations({ setLocations, locations, category, setCategory }) {
   };
 
   const fetchLocation = async () => {
-    const url = "http://localhost:3030/location";
+    const url = "https://explorelagos.onrender.com/location";
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
     setLocations(data);
-    setCategory(data)
+    setCategory(data);
     setLoading(true);
   };
-
 
   useEffect(() => {
     fetchLocation();
