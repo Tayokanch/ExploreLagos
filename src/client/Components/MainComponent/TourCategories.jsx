@@ -3,7 +3,7 @@ import "./TourCategories.css";
 import getImagePath from "./imagePath.js";
 
 function TourCategories({ setLocations, locations, category, setCategory }) {
-  const [mycategory, setMycategory] = useState([]);
+  const [mycategory, setMycategory] = useState(null);
 
   const getLocationByCategories = () => {
     if (mycategory === "All") {
@@ -18,7 +18,9 @@ function TourCategories({ setLocations, locations, category, setCategory }) {
   };
 
   useEffect(() => {
-    getLocationByCategories();
+    if (mycategory) {
+      getLocationByCategories();
+    }
   }, [mycategory]);
 
   const handleCategoryClick = (selectedCategory) => {
