@@ -49,22 +49,17 @@ function BookingForm({ popUp, setPopUp }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("this, is the new booking", booking);
 
     try {
       const response = await fetch(`${url}/bookings`, options);
-      console.log("this is the response status", response.status);
-
       if (!response.ok) {
         console.error("HTTP error! Status:", response.status);
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      //await sendEmail();
     } catch (err) {
       console.error("An error occurred:", err);
     }
-    console.log("this is the new bookings", booking);
     setBooking({
       printName: "",
       locationId: null,
@@ -88,7 +83,6 @@ function BookingForm({ popUp, setPopUp }) {
       [name]: value,
     });
 
-    console.log("this is bookings", booking);
   };
 
   const handleSelectChange = (e) => {
@@ -99,7 +93,6 @@ function BookingForm({ popUp, setPopUp }) {
     setLocationSelected(selectedLocation);
     if (selectedLocation) {
       setLocationName(selectedLocation.name);
-      console.log("this is the selected location", selectedLocation);
 
       setSellingPrice(selectedLocation?.price);
     }

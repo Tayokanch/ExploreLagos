@@ -30,9 +30,10 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [bookings, setBookings] = useState(0);
-  const [numOfBookings, setNumOfBookings] = useState(0);
+  const [numOfBookings, setNumOfBookings] = useState([]);
   const [toggleEye, setToggleEye] = useState(true);
   const [staffInfo, setStaffInfo] = useState(null);
+  const [validTickets, setValidTickets] = useState(null)
 
   const toggle = () => {
     setToggleEye(!toggleEye);
@@ -64,6 +65,8 @@ function App() {
         toggle,
         staffInfo,
         setStaffInfo,
+        validTickets,
+        setValidTickets
       }}
     >
       <Routes>
