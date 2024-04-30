@@ -82,7 +82,6 @@ function BookingForm({ popUp, setPopUp }) {
       referenceNo: generateRandomString(10),
       [name]: value,
     });
-
   };
 
   const handleSelectChange = (e) => {
@@ -197,7 +196,7 @@ function BookingForm({ popUp, setPopUp }) {
             />
           </div>
           <div>
-            <p>{sellingPrice && `£${sellingPrice}.00`}</p>
+            <p>{sellingPrice && `#${sellingPrice}.00`}</p>
           </div>
           <div>
             <button type="submit" id="close-popup">
