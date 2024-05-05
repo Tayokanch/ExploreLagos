@@ -1,18 +1,7 @@
 .team_container{
-    width: 100%;
-    height: 100vh;
     background-color: rgb(161, 201, 236);
-    overflow: auto;
- 
 }
 
-.team_container .dasboard_header{
-    display: grid;
-    background-color: rgb(5, 61, 110);
-    grid-auto-flow: column;
-    justify-content: space-between;
-    padding: 10px 30px;
-}
 .staff_header{
     background-color: #fff;
     margin-bottom: 10px;
@@ -31,30 +20,40 @@
     text-decoration: underline;
     font-weight: bold;
     color: rgb(20, 135, 135);
-
 }
 
 .staff_header > p:hover{
     color: rgb(96, 210, 210);
-
 }
 .team_box{
     width: 100%;
-    max-width: 1200px;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 300px 1fr;
     column-gap: 10px;
     margin: 0 auto;
 }   
 
 .our_team{
-    background-color: rgb(20, 135, 135);
+    background-color: rgba(5, 61, 110, 0.827);
+    padding-top: 100px;
+    padding-right: 20px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.our_team> p {
+    font-size: 2.5rem;
+    font-family: 'Signika';
+    color: #e4dcdc;
+    box-shadow: 0px 0px 1px 3px cornflowerblue;
+    border-radius: 10px;
 }
 
 .teams{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 10px;
+    margin-top: 10px;
    
 }
 
@@ -73,7 +72,7 @@
     font-family: "Ubuntu", sans-serif;
     font-size: 1.4rem;
     font-weight: bold;
-    color: rgb(20, 135, 135);
+    color:  rgba(5, 61, 110, 0.827);
 
 
 }
@@ -83,7 +82,6 @@
     padding-bottom: 10px;
 }
 .teams > figure > img{
-
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -95,7 +93,7 @@
 }
 
 .social_media > *{
-    color: rgb(20, 135, 135);
+    color:  rgba(5, 61, 110, 0.827);
     font-size: 2.5rem;
     padding-left: 8px;
 
@@ -103,16 +101,27 @@
 }
 
 .social_media > *:hover{
-    color: rgba(23, 124, 124, 0.468);
-
-
+    color:  rgba(5, 61, 110, 0.675);
 
 }
 .team_footer{
     background-color: rgb(2, 2, 29);
-    background-color: rgb(7, 35, 59);
-    color:#fff;
-    padding: 20px;
-    position: sticky;
-    bottom: 0;
+    color:#b2afaf;
+    padding: 10px;
+    display: grid;
+    place-items: center;
+
 }
+
+
+@media only screen and (max-width: 700px) {
+    .our_team{
+        display: none;
+    }
+    .team_box{
+        width: 100%;
+        display: grid;
+        grid-template-columns:  1fr;
+        padding: 0px 20px;
+    }
+  }

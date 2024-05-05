@@ -1,4 +1,4 @@
-.dashboard> div:first-of-type{
+  .dashboard> div:first-of-type{
     padding: 5px;
     border-bottom: 4px solid rgb(51, 6, 94);
     background-color: cornflowerblue;
@@ -6,4 +6,24 @@
     grid-auto-flow: column;
     justify-content: space-between;
     grid-area: header;
+}
+  
+ 
+.dasboard_header{
+    display: grid;
+    background-color: rgb(5, 61, 110);
+    grid-auto-flow: column;
+    justify-content: space-between;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
+
+.dasboard_header .HomeLogo{
+    color: aliceblue;
+}
+
+.dasboard_header .HomeLogo:hover{
+    color: rgb(142, 156, 168);
+
 }

@@ -3,10 +3,12 @@ import TeamHeader from "./TeamHeader";
 import { formContext } from "../../App";
 import SideBar from "./SideBar.jsx";
 import "./Dashboard.css";
+import DashboardHead from "./DashboardHead.jsx";
+
 const url = "http://localhost:3030/bookings/locationId";
 
 function ExpectedVisitors() {
-  const { staffInfo } = useContext(formContext);
+  const { staffInfo, setStaffInfo } = useContext(formContext);
   const [clientBookings, setClientBookings] = useState(() => {
     const storedBookings = sessionStorage.getItem("clientBookings");
     return storedBookings ? JSON.parse(storedBookings) : [];
@@ -35,7 +37,7 @@ function ExpectedVisitors() {
 
   return (
     <section className="dashboard">
-      <TeamHeader />
+      <DashboardHead  staffInfo={staffInfo} setStaffInfo={setStaffInfo} />
       <SideBar clientBookings={clientBookings} />
       <div className="main_dashboard">
         {clientBookings?.map((booking) => (

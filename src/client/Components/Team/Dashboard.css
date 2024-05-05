@@ -7,9 +7,11 @@
     grid-template-areas:
         'sidebar header'
         'sidebar dashboard';
+        
 }
 
 .dashboard >div:nth-of-type(3){
     grid-area: dashboard;
     background-color: greenyellow;
 }
+

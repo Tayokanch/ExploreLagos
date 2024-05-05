@@ -8,27 +8,15 @@ import { LogOut } from "lucide-react";
 function LoginAndLogout({ staffInfo, setStaffInfo }) {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    sessionStorage.clear();
-    navigate("/TeamLogin/*");
-  };
-
   const navigateTeamLogin = () => {
-    staffInfo
-      ? navigate(`/staff/${staffInfo?.locationId}`)
-      : navigate("/Team/");
+    navigate("/TeamLogin/*");
   };
 
   return (
     <div>
-      {staffInfo ? (
-        <p onClick={() => navigateTeamLogin()} className="staff_login">
-          {" "}
-          Login{" "}
-        </p>
-      ) : (
-        <LogOut onClick={() => handleLogout()} />
-      )}
+      <p onClick={() => navigateTeamLogin()} className="staff_login">
+        Login
+      </p>
     </div>
   );
 }

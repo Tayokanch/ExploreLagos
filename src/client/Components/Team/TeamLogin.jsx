@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 const url = "http://localhost:3030";
 
 function TeamLogin() {
-  const { toggle, toggleEye, staffInfo, setStaffInfo } =useContext(formContext);
+  const { toggle, toggleEye, staffInfo, setStaffInfo } =
+    useContext(formContext);
 
   const [staffLoginInput, setStaffLoginInput] = useState({
     username: "",
@@ -61,7 +62,7 @@ function TeamLogin() {
         sessionStorage.setItem("staffInfo", JSON.stringify(decodedToken));
 
         setStaffInfo(decodedToken);
-        
+
         const locationId = decodedToken.locationId;
         if (locationId) {
           navigate(`/staff/${locationId}`);
@@ -76,6 +77,10 @@ function TeamLogin() {
       password: "",
     });
   };
+
+  useEffect(() => {
+    console.log("This is Staff info", staffInfo);
+  }, [staffInfo]);
 
   return (
     <section className="team_login">
