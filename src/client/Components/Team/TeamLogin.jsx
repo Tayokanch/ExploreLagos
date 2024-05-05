@@ -78,9 +78,6 @@ function TeamLogin() {
     });
   };
 
-  useEffect(() => {
-    console.log("This is Staff info", staffInfo);
-  }, [staffInfo]);
 
   return (
     <section className="team_login">

@@ -59,7 +59,7 @@ function UserBookings() {
             .slice()
             .reverse()
             .map((booking) => (
-              <div className={UserBookingCss.tickets}>
+              <div className={UserBookingCss.tickets} key={booking.id}>
                 {
                   <img
                     src={`../${getImagePath(booking.locationId)[0]}`}

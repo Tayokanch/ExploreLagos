@@ -35,8 +35,8 @@ function Log() {
   };
   const touristLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); 
-  
+    setLoading(true);
+
     try {
       const verifyLogin = await fetch(`${url}/user/login`, options);
       if (!verifyLogin.ok) {
@@ -45,27 +45,18 @@ function Log() {
       }
       setLoginResponse("");
       const loginToken = await verifyLogin.json();
-      if (loginToken) {
-        const decodeToken = jwtDecode(loginToken.data);
-        setLoggedInUser(decodeToken);
-  
-        localStorage.setItem("token", JSON.stringify(loginToken.data));
-        localStorage.setItem("decoded", JSON.stringify(decodeToken));
-  
-        if (loggedInUser && selectedLocation) {
-          navigate(`location/${selectedLocation?.name}`);
-        } else {
-          navigate("/");
-        }
-      }
+      const decodeToken = jwtDecode(loginToken.data);
+      localStorage.setItem("token", JSON.stringify(loginToken.data));
+      localStorage.setItem("decoded", JSON.stringify(decodeToken));
+      setLoggedInUser(JSON.parse(localStorage.getItem("decoded")));
+      navigate("/");
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false); 
-      setFormInputs(initialForm); 
+      setLoading(false);
+      setFormInputs(initialForm);
     }
   };
-  
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -75,6 +66,8 @@ function Log() {
       [name]: value,
     });
   };
+
+
 
   return (
     <form className="form" onSubmit={touristLogin}>

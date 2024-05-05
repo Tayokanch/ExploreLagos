@@ -15,7 +15,7 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 function Reviews({ selectedLocation }) {
   const [reviews, setReviews] = useState([]);
   const [displayReviewBox, setDisplayReviewBox] = useState(false);
-  const { setFormInputs, formInputs } = useContext(formContext);
+  const { setFormInputs, formInputs, loggedInUser } = useContext(formContext);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -24,7 +24,7 @@ function Reviews({ selectedLocation }) {
       ...prevInputs,
       [name]: value,
       locationId: selectedLocation?.id,
-      userId: 10,
+      userId: loggedInUser?.userId,
     }));
   };
 
@@ -39,7 +39,7 @@ function Reviews({ selectedLocation }) {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://famous-jellyfish-production.up.railway.app/reviews`,
+        `http://localhost:3030/reviews`,
         options
       );
       const data = await response.json();
@@ -52,9 +52,7 @@ function Reviews({ selectedLocation }) {
     setDisplayReviewBox(false);
   };
 
-  useEffect(() => {
-    console.log(displayReviewBox);
-  }, [displayReviewBox]);
+
 
   const fetchReviews = async () => {
     if (!selectedLocation) {
@@ -67,7 +65,6 @@ function Reviews({ selectedLocation }) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    console.log("this is data", data.reviews.reverse());
     setReviews(data);
     return data;
   };

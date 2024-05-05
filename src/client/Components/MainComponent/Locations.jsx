@@ -70,7 +70,7 @@ function Locations({ setLocations, locations, category, setCategory }) {
               <figcaption>{location.name}</figcaption>
               <p>
                 {location.about.substring(0, 200).concat("...")}
-                <span>read more</span>
+                <span>Booking</span>
               </p>
 
               {getImagePath(location.id)[0] && (
