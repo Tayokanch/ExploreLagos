@@ -76,9 +76,6 @@ function Navbar() {
           displayNav ? NavCSS.responsive_nav : ""
         }`}
       >
-        <li>About</li>
-        <li onClick={() => handleNavigation("/Team")}>Team</li>
-
         {loggedInUser ? (
           <>
             <li>{`Hi, ${loggedInUser?.firstName}!`}</li>
@@ -88,10 +85,11 @@ function Navbar() {
         ) : (
           <li onClick={() => handleNavigation("/LoginOrSignUp")}>Sign up/in</li>
         )}
+        <li onClick={() => handleNavigation("/Team")}>Team</li>
 
         <button
           onClick={toggleNavVisibility}
-          className={`${NavCSS.nav_btn } ${
+          className={`${NavCSS.nav_btn} ${
             displayNav ? NavCSS.responsive_nav : ""
           }`}
         >
