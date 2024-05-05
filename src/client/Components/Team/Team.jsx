@@ -91,7 +91,7 @@ function Team() {
               <img src={staff4} alt="Teniola Jacob" />
               <figcaption>Sanusi Abdullahi</figcaption>
               <p className="team-member-description">
-                Aisha's deep appreciation for Lagos's diverse cultures and
+              Sanusi's deep appreciation for Lagos's diverse cultures and
                 traditions enriches every tour, providing a unique insight into
                 the city's heritage.
               </p>
