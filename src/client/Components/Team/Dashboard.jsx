@@ -5,25 +5,18 @@ import SideBar from "./SideBar.jsx";
 import "./Dashboard.css";
 import DashboardHead from "./DashboardHead.jsx";
 
-const url = "http://localhost:3030/bookings/locationId";
+const url = "http://localhost:3030/bookings/location";
 
 function ExpectedVisitors() {
   const { staffInfo, setStaffInfo } = useContext(formContext);
-  const [clientBookings, setClientBookings] = useState(() => {
-    const storedBookings = sessionStorage.getItem("clientBookings");
-    return storedBookings ? JSON.parse(storedBookings) : [];
-  });
+  const [clientBookings, setClientBookings] = useState([])
 
   const getClientBookings = async () => {
     try {
       if (staffInfo) {
         const result = await fetch(`${url}/${staffInfo?.locationId}`);
         const { bookings } = await result.json();
-
-        sessionStorage.setItem("clientBookings", JSON.stringify(bookings));
-        console.log("this is the new bookings", bookings);
         setClientBookings(bookings);
-        return bookings;
       }
     } catch (err) {
       console.error("Error fetching bookings:", err);
@@ -34,6 +27,10 @@ function ExpectedVisitors() {
   useEffect(() => {
     getClientBookings();
   }, [staffInfo]);
+
+  useEffect(()=>{
+    console.log('This is my client bookings', clientBookings)
+  },[clientBookings] )
 
   return (
     <section className="dashboard">
