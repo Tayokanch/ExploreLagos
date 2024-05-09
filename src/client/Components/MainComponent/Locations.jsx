@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootSrap from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
+import ourlocations from "../AllLocations.js";
 
 function Locations({ setLocations, locations, category, setCategory }) {
   const { loggedInUser, selectedLocation, setSelectedLocation } =
@@ -20,20 +21,14 @@ function Locations({ setLocations, locations, category, setCategory }) {
     navigate(path);
   };
 
-  const fetchLocation = async () => {
-    const url = "https://explorelagos.onrender.com/location";
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data = await response.json();
-    setLocations(data);
-    setCategory(data);
+  const AllLocations = () => {
+    setLocations(ourlocations);
+    setCategory(ourlocations);
     setLoading(true);
   };
 
   useEffect(() => {
-    fetchLocation();
+    AllLocations();
   }, []);
 
   const handleLocation = (locationSelected) => {
